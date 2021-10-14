@@ -13,7 +13,7 @@
     <body>
         <nav class="navbar navbar-dark navbar-expand-lg bg-warning text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">36 Phố phường</a>
+                <a class="navbar-brand" href="#home">36 Phố phường</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -27,13 +27,18 @@
             </div>
         </nav>
 
+        <div>
+            
+        </div>
+
         <div id="home">
             <div class="landing-text">
                 <h1>36 Phố phường</h1>
                 <h3>Tìm hiểu về phố cổ Hà Nội</h3>
+                <a role="button" class="btn btn-light smoothscroll" href="#about">Khám phá</a>
             </div>
         </div>
-        <div>
+        <div id="about" class="container">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Amet commodo nulla facilisi nullam vehicula ipsum a. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum. Consectetur adipiscing elit pellentesque habitant. Volutpat lacus laoreet non curabitur gravida arcu ac. Aliquet bibendum enim facilisis gravida neque convallis. Ridiculus mus mauris vitae ultricies leo integer malesuada. Accumsan tortor posuere ac ut consequat. Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant.
 
 Eget lorem dolor sed viverra ipsum nunc. Libero id faucibus nisl tincidunt eget nullam. Tortor condimentum lacinia quis vel eros donec. Nibh sed pulvinar proin gravida hendrerit lectus. Feugiat vivamus at augue eget. Lorem sed risus ultricies tristique nulla aliquet. Felis eget velit aliquet sagittis id consectetur purus ut. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Vel orci porta non pulvinar neque. Metus vulputate eu scelerisque felis imperdiet proin fermentum. Molestie ac feugiat sed lectus vestibulum mattis. Donec ultrices tincidunt arcu non. Hac habitasse platea dictumst vestibulum rhoncus. Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Viverra nam libero justo laoreet sit. Faucibus nisl tincidunt eget nullam non nisi est sit amet. Elit pellentesque habitant morbi tristique senectus et netus. Ut faucibus pulvinar elementum integer enim. Nibh venenatis cras sed felis eget velit aliquet. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque.
@@ -54,6 +59,48 @@ Dui sapien eget mi proin sed. Pellentesque sit amet porttitor eget dolor. Nisi e
 
 Pharetra sit amet aliquam id diam maecenas ultricies mi. Duis convallis convallis tellus id interdum. Est ullamcorper eget nulla facilisi. Et netus et malesuada fames ac turpis egestas. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Turpis egestas maecenas pharetra convallis posuere morbi leo urna molestie. Morbi tristique senectus et netus et malesuada fames. In mollis nunc sed id semper risus. Nam at lectus urna duis convallis convallis. Placerat vestibulum lectus mauris ultrices eros in.
         </div>
-        <div id="fixed"></div>
+
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function(event) {
+                    // On-page links
+                    if (
+                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+                    && 
+                    location.hostname == this.hostname
+                    ) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                        scrollTop: target.offset().top
+                        }, 1000, function() {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                        });
+                    }
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
