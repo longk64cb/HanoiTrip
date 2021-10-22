@@ -1,3 +1,3 @@
 <?php
-    include("../map.html");
+    include('../html/map.html');
 ?>
