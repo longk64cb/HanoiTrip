@@ -9,8 +9,12 @@ body {
     background-color: #f0e5c7;
 }
 
+.carousel-inner .carousel-item {
+    transition: transform 2s ease;
+  }
+
 #home {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(img/pho_co_ha_noi.jpg) no-repeat center center fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://trealet.com/zp-core/full-image.php?a=Nhom06/media&i=Front_page.jpg&q=75&wmk=%21&dsp=protected&check=34bfdba9523d25ba27cfe0f2d55f544a0c9b78e0) no-repeat center center fixed;
     display: table;
     height: 100%;
     width: 100%;
@@ -59,4 +63,8 @@ body {
 .carousel-item {
     border: 10px;
     text-align: center;
+}
+
+.padlet-embed {
+    margin-top: 40px;
 }
