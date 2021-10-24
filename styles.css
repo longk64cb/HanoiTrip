@@ -4,8 +4,7 @@ html, body {
 }
 
 body {
-    overflow-y: scroll;
-    scroll-behavior: smooth;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(https://img2.thuthuatphanmem.vn/uploads/2019/03/05/hinh-nen-powerpoint-chu-de-lich-su-don-gian_110315874.jpg);
     background-color: #f0e5c7;
 }
 
@@ -20,7 +19,6 @@ body {
     width: 100%;
     position: relative;
     background-size: cover ;
-    background-blend-mode: darken;
 }
 
 #about {
