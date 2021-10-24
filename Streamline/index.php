@@ -23,6 +23,12 @@
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
+	
+	.grid-content {
+		display: grid;
+		grid-template-columns: repeat(4, 200px);
+		grid-gap: 1.5rem;
+	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -59,13 +65,13 @@
       </div>
     </div>
     <div id="site_content">
-      <div id="content">		
+      <div id="content container grid-content">		
 <?php
 		for($i=0;$i<$ni;$i++){
 			$itemid = $d['items'][$i];
 			$idata 	= fetchItemData($itemid);
-			echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
-			echo htmlItem('',1,$idata,'itemcontent');
+			// echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
+			// echo htmlItem('',1,$idata,'itemcontent');
 			echo itemThumbnail($idata);
 		}
 ?>       
