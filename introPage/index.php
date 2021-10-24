@@ -12,5 +12,5 @@
 ?>
 
 <?php
-  include('../html/index.html');
+  include('../html/main.html');
 ?>

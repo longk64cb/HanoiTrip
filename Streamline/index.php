@@ -1,14 +1,9 @@
 <?php
 	require_once('../lib/functions.php');
 
-	$d = initializeApp('streamline-example.trealet');	
+	$d = initializeApp('streamline');	
 	$ni = sizeof($d['items']);
 	$iu = array($ni);	
-
-	for($i=0;$i<$ni;$i++){
-		$itemid = $d['items'][$i];
-		$idata 	= fetchItemData($itemid);
-	}
 ?>
 
 <!DOCTYPE HTML>
@@ -33,6 +28,22 @@
 </head>
 
 <body>
+	<nav class="navbar navbar-dark navbar-expand-lg bg-warning text-uppercase fixed-top" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand fs-4 fw-bold" href="../introPage/index.php">HaNoiTrip</a>
+			<button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				Menu
+				<i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="../introPage/index.php#about">Khám phá</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="#">Bản đồ</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="#contact">Liên hệ</a></li>
+				</ul>
+			</div>
+		</div>
+    </nav>
   <div id="main">
     <div id="header">
       <div id="logo">
@@ -54,7 +65,8 @@
 			$itemid = $d['items'][$i];
 			$idata 	= fetchItemData($itemid);
 			echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
-			echo htmlItem($idata,'itemcontent');
+			echo htmlItem('',1,$idata,'itemcontent');
+			echo itemThumbnail($idata);
 		}
 ?>       
       </div>

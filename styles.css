@@ -13,7 +13,7 @@ body {
   }
 
 #home {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://trealet.com/albums/Nhom06/media/images/Front_page.jpg) no-repeat center center fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://hcloud.trealet.com/albums/Nhom06/media/images/Front_page.jpg) no-repeat center center fixed;
     display: table;
     height: 100%;
     width: 100%;
