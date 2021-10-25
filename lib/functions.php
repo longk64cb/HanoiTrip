@@ -35,6 +35,7 @@ function fetchItemData($item_url){
 	}
 }
 
+// hàm render nội dung item
 function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 	if(isset($idata['url_full']))//Show up the data item
 	{
@@ -107,30 +108,37 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 	}
 }
 
+// load thumbnail cho grid item
 function itemThumbnail($idata) {
 	$url_full = $idata['url_full'];
 	$html = '<style>
-    img {
+    .item {
 		border: 1px solid #ddd; /* Gray border */
 		border-radius: 4px;  /* Rounded border */
 		padding: 5px; /* Some padding */
-		width: 500px; /* Set a small width */
-		height: 237px; 
+		width: 350px; /* Set a small width */
+        height: 200px;
 	  }
 	  
 	  /* Add a hover effect (blue shadow) */
-	  img:hover {
+	.item:hover {
 		box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-	  }
+	}
+
     .item {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-</style>
-<a class="item">
-    <img src="'.$url_full.'">
-</a>';
+
+    img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+	</style>
+	<a class="item">
+		<img src="'.$url_full.'">
+	</a>';
 	return $html;
 }
 ?>
