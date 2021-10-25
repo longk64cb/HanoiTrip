@@ -118,6 +118,7 @@ function itemThumbnail($idata) {
 		padding: 5px; /* Some padding */
 		width: 350px; /* Set a small width */
         height: 200px;
+		background-color: white;
 	  }
 	  
 	  /* Add a hover effect (blue shadow) */

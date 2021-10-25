@@ -4,6 +4,9 @@
 		"title":"Văn Miếu Quốc Tử Giám",
 		"author":"Nhom06",
 		"desc":"Văn Miếu được xây dựng năm 1070 dưới thời vua Lý Thánh Tông, là nơi thờ Khổng Tử, Chu Công và Tứ phối. Đến năm 1076, vua Lý Nhân Tông cho lập thêm Quốc Tử Giám bên cạnh là trường đại học dành riêng cho con vua và các gia đình quý tộc. Đến thời vua Trần Thái Tông, Quốc Tử Giám được đổi tên thành Quốc học viện và thu nhận cả con cái nhà thường dân có sức học xuất sắc.",
-		"items":[8410,8538,8570,8610,8634]
+		"items": {
+			"Một số ảnh": [8410,8538,8570,8610,8634],
+			"GIF": 9218
+		}
 	}
 }
