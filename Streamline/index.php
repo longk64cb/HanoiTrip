@@ -17,6 +17,21 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="../styles.css"/>
 <style>.scroll-indicator-controller{position:fixed;top:50vh;transform:translate(0,-50%);right:10px;z-index:999}.scroll-indicator-controller.indi-mobile>div span{display:none}@media (min-width:1025px){.scroll-indicator-controller{right:20px}}.scroll-indicator-controller>div{width:20px;height:20px;position:relative;border-radius:50%;border:1px solid tomato;background:rgba(0,0,0,.25);margin:0 0 10px 0;cursor:pointer;transition:background .4s ease;will-change:transition}.scroll-indicator-controller>div span{color:tomato;position:absolute;right:calc(100% + 8px);white-space:nowrap;top:50%;font-family:arial,sans-serif;font-size:16px;line-height:17px;width:0;overflow:hidden;opacity:0;transform:translateY(-50%) translateX(10px);transition:all .4s ease;will-change:transition}@media (hover:none){.scroll-indicator-controller>div span{display:none}}.scroll-indicator-controller>div span:after{content:"-----";padding-left:5px;letter-spacing:-2px;font-family:arial,sans-serif;vertical-align:text-top;line-height:14px}@media (hover:hover),(-ms-high-contrast:none),(-ms-high-contrast:active){.scroll-indicator-controller>div:hover span{width:auto;opacity:1;overflow:visible;transform:translateY(-50%) translateX(0)}}.scroll-indicator-controller>div.active{background:tomato;border-color:rgba(0,0,0,.25)}@supports (-ms-ime-align:auto){.scroll-indicator-controller>div span{transition:opacity .4s ease}}
+	#header h1 {
+		font-size: 52px;
+		text-align: center;
+		padding-top: 20px;
+	}
+
+	#header h2 {
+		margin-top: 20px;
+	}
+
+	#header p {
+		font-size: 20px;
+		margin-top: 20px;
+	}
+	
 	#itemcontent{
 		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
 		border-radius: 20px 20px 20px 20px;
@@ -33,6 +48,52 @@
 
 	#main {
 		margin-top: 75px;
+		width: 80%;
+		max-width: 1200px;
+		margin: auto;
+		margin-top: 100px;
+	}
+
+	/* css itemslider */
+	.slider {
+    width: 980px;
+    margin: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+	}
+	.slider-container {
+    	display: flex;
+	}
+	.prev{
+		width: 1.2em;
+		text-align: center;
+		position: absolute;
+		left: 10px;
+		top: 220px;
+		margin-top: -0.5em;
+		font-size: 60px;
+		font-family: monospace;
+		border-radius: 5px;
+		color: white;
+		padding-bottom:8px;
+	}
+	.next {
+		width: 1.2em;
+		text-align: center;
+		position: absolute;
+		right: 10px;
+		top: 220px;
+		margin-top: -0.5em;
+		font-size: 60px;
+		font-family: monospace;
+		border-radius: 5px;
+		color: white;
+		padding-bottom:8px;
+	}
+	.prev:hover, .next:hover {
+    background-color: rgba(30, 30, 30, .6);
 	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -64,7 +125,7 @@
 <?php
 		if(isset($d['author']))
 			echo '<h2><b>Tác giả: </b><i>'.$d['author'].'</i></h2>';
-		echo '<h4>'.$d['desc'].'</h4>';
+		echo '<p>'.$d['desc'].'</p>';
 ?>
         </div>
       </div>
@@ -74,14 +135,19 @@
 <?php
 	foreach($d['items'] as $key => $value) {
 		if(is_array($value)) {
-			echo '<h1>'.$key.'</h1><div class="grid-content justify-content-center">';
+			echo '<h1>'.$key.'</h1>';
+			echo '<div class="slider">';
+			echo '<div class="slider-container">';
 			for($i=0;$i<sizeof($value);$i++){
 				$itemid = $value[$i];
 				$idata 	= fetchItemData($itemid);
 				// echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
 				// echo htmlItem('',1,$idata,'itemcontent');
-				echo itemThumbnail($idata);
+				echo itemSlider($idata);
 			}
+			echo '</div>';
+			echo '<div class="prev" onclick="prev()">&lt;</div>';
+        	echo '<div class="next" onclick="next()">&gt;</div>';
 			echo '</div>';
 		}
 		else {
@@ -93,6 +159,27 @@
 		}
 	}
 ?>
+
+	<script>
+		var slider = document.querySelector('.slider-container');
+		var index = 0;
+
+		function next() {
+			if (index < 3) {
+			index++;
+			}
+			slider.style.transition = 'transform 0.4s ease-in-out';
+			slider.style.transform = 'translateX(-'+ 340 * index + 'px)';
+		}
+
+		function prev() {
+			if (index > 0) {
+				index--;
+			} 
+			slider.style.transition = 'transform 0.4s ease-in-out';
+			slider.style.transform = 'translateX(-' + 340 * index + 'px)';
+		}
+	</script>
     </div>
   </div>
 <!--Easy Scroll Dots js-->

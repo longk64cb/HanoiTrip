@@ -142,5 +142,25 @@ function itemThumbnail($idata) {
 	</a>';
 	return $html;
 }
+
+function itemSlider($idata) {
+	$url_full = $idata['url_full'];
+	$html = '<style>
+    .item {
+		width:300px;
+		height:500px;
+		margin-right: 40px;
+	}
+	.item img{
+		width:300px;
+		height:500px;
+		object-fit: cover;
+	}
+	</style>
+	<a class="item">
+		<img src="'.$url_full.'">
+	</a>';
+	return $html;
+}
 ?>
 
