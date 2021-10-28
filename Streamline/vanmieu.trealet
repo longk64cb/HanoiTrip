@@ -6,7 +6,9 @@
 		"desc":"Văn Miếu được xây dựng năm 1070 dưới thời vua Lý Thánh Tông, là nơi thờ Khổng Tử, Chu Công và Tứ phối. Đến năm 1076, vua Lý Nhân Tông cho lập thêm Quốc Tử Giám bên cạnh là trường đại học dành riêng cho con vua và các gia đình quý tộc. Đến thời vua Trần Thái Tông, Quốc Tử Giám được đổi tên thành Quốc học viện và thu nhận cả con cái nhà thường dân có sức học xuất sắc.",
 		"items": {
 			"Một số ảnh": [8410,8538,8570,8610,8634],
-			"GIF": 9218
+			"GIF": 9218,
+			"Video giới thiệu": "<iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/Pf7pv2SR5xg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+			"Tham quan trực tuyến": "<iframe width=\"853\" height=\"480\" src=\"https://truetech.com.vn/VM/Tour360/\" title=\"3D\" frameborder=\"0\" allow=\"accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen scolling=\"no\"></iframe>"
 		}
 	}
 }
