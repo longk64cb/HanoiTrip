@@ -95,6 +95,22 @@
 	.prev:hover, .next:hover {
     background-color: rgba(30, 30, 30, .6);
 	}
+	.popup {
+		display: none;
+		position: fixed;
+		top: 80px;
+		left: 340px;
+		border-radius: 10px;
+		background-color: white;
+	}
+
+	.popup img {
+		width:700px;
+		height:540px;
+		object-fit: contain;
+		margin-left: 50px;
+	}
+	
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -149,7 +165,20 @@
 			echo '<div class="prev" onclick="prev()">&lt;</div>';
         	echo '<div class="next" onclick="next()">&gt;</div>';
 			echo '</div>';
+			echo '<div class="popup" style="width:800px; height: 600px;">';
+			echo '<div>';
+			echo '<p style="font-size: 30px; margin-top: 20px; margin-left: 40px; display:inline-block; width:700px;">Images</p>';
+			echo '<p style="display:inline-block; font-size: 26px;" onclick="closePopup()">  X  </p>';
+			echo '</div>';
+			echo '<img style="margin-top:-20px;">';
+			echo '</div>';
 		}
+		elseif(is_string($value)) {
+            echo '<h1>'.$key.'</h1>';
+            echo '<div style="text-align: center;">';
+            echo $value;
+            echo '</div>';
+        }
 		else {
 			$itemid = $value;
 			$idata 	= fetchItemData($itemid);
@@ -159,7 +188,7 @@
 		}
 	}
 ?>
-
+	<!-- slider script -->
 	<script>
 		var slider = document.querySelector('.slider-container');
 		var index = 0;
@@ -178,6 +207,19 @@
 			} 
 			slider.style.transition = 'transform 0.4s ease-in-out';
 			slider.style.transform = 'translateX(-' + 340 * index + 'px)';
+		}
+	</script>
+
+	<!-- popup script -->
+	<script>
+		function popupFunc() {
+			var pop = document.querySelector('.popup img');
+			var img = event.target;
+			pop.src = img.src;
+			document.querySelector(".popup").style.display = "block";
+		}
+		function closePopup() {
+			document.querySelector(".popup").style.display = "none";
 		}
 	</script>
     </div>

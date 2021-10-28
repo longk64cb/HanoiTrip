@@ -157,9 +157,10 @@ function itemSlider($idata) {
 		object-fit: cover;
 	}
 	</style>
-	<a class="item">
+	<a class="item" onClick="popupFunc()">
 		<img src="'.$url_full.'">
-	</a>';
+	</a>
+	';
 	return $html;
 }
 ?>
