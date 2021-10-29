@@ -15,7 +15,7 @@
 <!--test template style-->
 <!--Easy Scroll Dots style-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../styles.css"/>
+<link rel="stylesheet" href="./styles.css"/>
 <style>.scroll-indicator-controller{position:fixed;top:50vh;transform:translate(0,-50%);right:10px;z-index:999}.scroll-indicator-controller.indi-mobile>div span{display:none}@media (min-width:1025px){.scroll-indicator-controller{right:20px}}.scroll-indicator-controller>div{width:20px;height:20px;position:relative;border-radius:50%;border:1px solid tomato;background:rgba(0,0,0,.25);margin:0 0 10px 0;cursor:pointer;transition:background .4s ease;will-change:transition}.scroll-indicator-controller>div span{color:tomato;position:absolute;right:calc(100% + 8px);white-space:nowrap;top:50%;font-family:arial,sans-serif;font-size:16px;line-height:17px;width:0;overflow:hidden;opacity:0;transform:translateY(-50%) translateX(10px);transition:all .4s ease;will-change:transition}@media (hover:none){.scroll-indicator-controller>div span{display:none}}.scroll-indicator-controller>div span:after{content:"-----";padding-left:5px;letter-spacing:-2px;font-family:arial,sans-serif;vertical-align:text-top;line-height:14px}@media (hover:hover),(-ms-high-contrast:none),(-ms-high-contrast:active){.scroll-indicator-controller>div:hover span{width:auto;opacity:1;overflow:visible;transform:translateY(-50%) translateX(0)}}.scroll-indicator-controller>div.active{background:tomato;border-color:rgba(0,0,0,.25)}@supports (-ms-ime-align:auto){.scroll-indicator-controller>div span{transition:opacity .4s ease}}
 	#header h1 {
 		font-size: 52px;
@@ -118,15 +118,15 @@
 <body>
 	<nav class="navbar navbar-dark navbar-expand-lg bg-warning text-uppercase fixed-top" id="mainNav">
 		<div class="container">
-			<a class="navbar-brand fs-4 fw-bold" href="../introPage/index.php">HaNoiTrip</a>
+			<a class="navbar-brand fs-4 fw-bold" href="./introPage/index.php">HaNoiTrip</a>
 			<button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				Menu
 				<i class="fas fa-bars"></i>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="../introPage/index.php#about">Khám phá</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="../introPage/map.php">Bản đồ</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="./introPage/index.php#about">Khám phá</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="./introPage/map.php">Bản đồ</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="#contact">Liên hệ</a></li>
 				</ul>
 			</div>
@@ -156,6 +156,7 @@
 			echo '<div class="slider-container">';
 			for($i=0;$i<sizeof($value);$i++){
 				$itemid = $value[$i];
+				// debug_to_console($itemid);
 				$idata 	= fetchItemData($itemid);
 				// echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
 				// echo htmlItem('',1,$idata,'itemcontent');

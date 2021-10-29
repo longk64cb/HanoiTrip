@@ -4,7 +4,8 @@
 const APP_URL = 'trealet';
 
 function initializeApp($exec){
-	$app_url = '../../../..'.$_GET[APP_URL];
+	// $app_url = '../../../..'.$_GET[APP_URL];
+	$app_url = '../vanmieu.trealet';
 	$json_string = file_get_contents($app_url);	
 	if(!$json_string) die($app_url.' not found!');
 	$d = json_decode($json_string, true);	
@@ -26,7 +27,8 @@ function fetchItemData($item_url){
 	if(is_numeric($item_url)){
 		$item_url = 'https://hcloud.trealet.com/tiny'.$item_url.'/?json';
 		$json_string = file_get_contents($item_url);
-		if(!$json_string) return;	
+		// debug_to_console($json_string);
+		if(!$json_string){debug_to_console('bruh'); return;	}
 		$d = json_decode($json_string, true);
 		return $d['image'];
 	}
@@ -145,8 +147,11 @@ function itemThumbnail($idata) {
 
 function itemSlider($idata) {
 	$url_full = $idata['url_full'];
+	debug_to_console($url_full);
+	$title	  = $idata['title'];
 	$html = '<style>
     .item {
+		position: relative;
 		width:300px;
 		height:500px;
 		margin-right: 40px;
@@ -156,12 +161,55 @@ function itemSlider($idata) {
 		height:500px;
 		object-fit: cover;
 	}
+	.img__description_layer {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(36, 62, 206, 0.6);
+		color: #fff;
+		visibility: hidden;
+		opacity: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	  
+		/* transition effect. not necessary */
+		transition: opacity .2s, visibility .2s;
+	  }
+	  
+	  .item:hover .img__description_layer {
+		visibility: visible;
+		opacity: 1;
+	  }
+	  
+	  .img__description {
+		transition: .2s;
+		transform: translateY(1em);
+		text-align: center;
+	  }
+	  
+	  .item:hover .img__description {
+		transform: translateY(0);
+	  }
 	</style>
 	<a class="item" onClick="popupFunc()">
 		<img src="'.$url_full.'">
+		<div class="img__description_layer">	
+			<p class="img_description">'.$title.'</p>
+		</div>
 	</a>
 	';
 	return $html;
+}
+
+function debug_to_console($data) {
+	$output = $data;
+	if (is_array($output))
+		$output = implode(',', $output);
+
+	echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 ?>
 
