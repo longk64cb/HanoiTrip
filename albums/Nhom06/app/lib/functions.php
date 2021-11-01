@@ -105,7 +105,7 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 		}else if($type=='qr'){
 			$vobj 	 .= '<iframe style="position: relative; width: 90%;" src="https://hcloud.trealet.com/trealet-schema/input-qr/index.php?tr_id='.$trealet_id.'&nij='.$nij.'" title="Scan QR code from camera" frameborder="0" allow="camera" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+200)+\'px\';"></iframe>';
 		}
-		$html 	  = '<div id="'.$css_input_id.'"><h1>'.$title.'</h1><center>'.$vobj.'</center><br><p>'.$desc.'</p></div>';
+		$html 	  = '<div id="'.$css_input_id.'"><h1 class="title" style={}>'.$title.'</h1><center>'.$vobj.'</center><br><p>'.$desc.'</p></div>';
 		return $html;
 	}
 }

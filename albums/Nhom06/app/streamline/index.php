@@ -15,21 +15,60 @@
 <!--test template style-->
 <!--Easy Scroll Dots style-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../styles.css"/>
-<style>.scroll-indicator-controller{position:fixed;top:50vh;transform:translate(0,-50%);right:10px;z-index:999}.scroll-indicator-controller.indi-mobile>div span{display:none}@media (min-width:1025px){.scroll-indicator-controller{right:20px}}.scroll-indicator-controller>div{width:20px;height:20px;position:relative;border-radius:50%;border:1px solid tomato;background:rgba(0,0,0,.25);margin:0 0 10px 0;cursor:pointer;transition:background .4s ease;will-change:transition}.scroll-indicator-controller>div span{color:tomato;position:absolute;right:calc(100% + 8px);white-space:nowrap;top:50%;font-family:arial,sans-serif;font-size:16px;line-height:17px;width:0;overflow:hidden;opacity:0;transform:translateY(-50%) translateX(10px);transition:all .4s ease;will-change:transition}@media (hover:none){.scroll-indicator-controller>div span{display:none}}.scroll-indicator-controller>div span:after{content:"-----";padding-left:5px;letter-spacing:-2px;font-family:arial,sans-serif;vertical-align:text-top;line-height:14px}@media (hover:hover),(-ms-high-contrast:none),(-ms-high-contrast:active){.scroll-indicator-controller>div:hover span{width:auto;opacity:1;overflow:visible;transform:translateY(-50%) translateX(0)}}.scroll-indicator-controller>div.active{background:tomato;border-color:rgba(0,0,0,.25)}@supports (-ms-ime-align:auto){.scroll-indicator-controller>div span{transition:opacity .4s ease}}
+<!-- <link rel="stylesheet" href="../styles.css"/> -->
+<style>
+	html, body {
+    height: 100%;
+    width: 100%;
+	}
+
+	body {
+		background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(https://img2.thuthuatphanmem.vn/uploads/2019/03/05/hinh-nen-powerpoint-chu-de-lich-su-don-gian_110315874.jpg);
+		background-color: #f0e5c7;
+	}
+
+	#home {
+		background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(
+			<?php 
+				$idata 	= fetchItemData($d['imgFront']);
+				echo $idata['url_full'];
+			?>
+		) no-repeat center center fixed;
+		display: table;
+		height: 60%;
+		width: 100%;
+		position: relative;
+		background-size: cover ;
+	}
+
+	.landing-text {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+		color: aliceblue;
+	}
+
+	.landing-text h1 {
+		font-size: 500%;
+		font-weight: 700;
+	}
+
+	#header {
+		margin-bottom: 50px;
+	}
+
 	#header h1 {
 		font-size: 52px;
 		text-align: center;
-		padding-top: 20px;
-	}
-
-	#header h2 {
-		margin-top: 20px;
+		/* padding-top: 20px; */
 	}
 
 	#header p {
+		width: 700px;
 		font-size: 20px;
-		margin-top: 20px;
+		/* margin-top: 20px; */
+		margin: auto;
+		text-align: center;
 	}
 	
 	#itemcontent{
@@ -47,11 +86,21 @@
 	}
 
 	#main {
-		margin-top: 75px;
+		margin: 50px auto;
 		width: 80%;
 		max-width: 1200px;
-		margin: auto;
-		margin-top: 100px;
+	}
+
+	#logo_text {
+		text-align: center;
+	}
+
+	.title {
+		margin-bottom: 25px;
+	}
+
+	.content {
+		margin: 50px auto;
 	}
 
 	/* css itemslider */
@@ -116,31 +165,38 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-dark navbar-expand-lg bg-warning text-uppercase fixed-top" id="mainNav">
+	<nav class="navbar navbar-dark navbar-expand-lg text-uppercase fixed-top" id="navbar">
 		<div class="container">
-			<a class="navbar-brand fs-4 fw-bold" href="./introPage/index.php">HaNoiTrip</a>
+			<a class="navbar-brand fs-4 fw-bold" href="../introPage/index.php">HaNoiTrip</a>
 			<button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				Menu
 				<i class="fas fa-bars"></i>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="./introPage/index.php#about">Khám phá</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="./introPage/map.php">Bản đồ</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="../introPage/index.php#about">Khám phá</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="../introPage/map.php">Bản đồ</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded fw-bold" href="#contact">Liên hệ</a></li>
 				</ul>
 			</div>
 		</div>
     </nav>
+	<div id="home">
+		<div class="landing-text">
+			<h1><?php echo $d['title']; ?></h1>
+			<!-- <h3>Tìm hiểu về kiến trúc lịch sử Hà Nội</h3> -->
+			<a role="button" class="btn btn-light smoothscroll" href="#main">Khám phá</a>
+		</div>
+    </div>
   <div id="main">
     <div id="header" class="container">
       <div id="logo">
-		<h1><span class="logo_colour"><?php echo $d['title']; ?></span></h1>
+		<h1 id="desc"><span class="logo_colour">Giới thiệu</span></h1>
 		
         <div id="logo_text">
 <?php
-		if(isset($d['author']))
-			echo '<h2><b>Tác giả: </b><i>'.$d['author'].'</i></h2>';
+		// if(isset($d['author']))
+		// 	echo '<h2><b>Tác giả: </b><i>'.$d['author'].'</i></h2>';
 		echo '<p>'.$d['desc'].'</p>';
 ?>
         </div>
@@ -151,7 +207,8 @@
 <?php
 	foreach($d['items'] as $key => $value) {
 		if(is_array($value)) {
-			echo '<h1>'.$key.'</h1>';
+			echo '<div class="content">';
+			echo '<h1 class="title">'.$key.'</h1>';
 			echo '<div class="slider">';
 			echo '<div class="slider-container">';
 			for($i=0;$i<sizeof($value);$i++){
@@ -173,18 +230,19 @@
 			echo '</div>';
 			echo '<img style="margin-top:-20px;">';
 			echo '</div>';
+			echo '</div>';
 		}
 		elseif(is_string($value)) {
-            echo '<h1>'.$key.'</h1>';
+            echo '<div class="content"><h1 class="title">'.$key.'</h1>';
             echo '<div style="text-align: center;">';
             echo $value;
-            echo '</div>';
+            echo '</div></div>';
         }
 		else {
 			$itemid = $value;
 			$idata 	= fetchItemData($itemid);
 			echo '<div class="content">';
-			echo htmlItem('',1,$idata,'itemcontent');
+			echo htmlItem('',1,$idata);
 			echo '</div>';
 		}
 	}
@@ -221,6 +279,15 @@
 		}
 		function closePopup() {
 			document.querySelector(".popup").style.display = "none";
+		}
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+			document.getElementById("navbar").style.backgroundColor = "#ffc107";
+		} else {
+			document.getElementById("navbar").style.backgroundColor = "transparent";
+		}
 		}
 	</script>
     </div>
