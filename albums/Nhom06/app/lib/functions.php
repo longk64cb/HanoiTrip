@@ -4,8 +4,8 @@
 const APP_URL = 'trealet';
 
 function initializeApp($exec){
-	// $app_url = '../../../..'.$_GET[APP_URL];
-	$app_url = '../vanmieu.trealet';
+	$app_url = '../../../..'.$_GET[APP_URL];
+	// $app_url = '../vanmieu.trealet';
 	$json_string = file_get_contents($app_url);	
 	if(!$json_string) die($app_url.' not found!');
 	$d = json_decode($json_string, true);	
@@ -194,12 +194,49 @@ function itemSlider($idata) {
 		transform: translateY(0);
 	  }
 	</style>
-	<a class="item" onClick="popupFunc()">
+	<a class="item" onClick="showDetails(this)">
 		<img src="'.$url_full.'">
 		<div class="img__description_layer">	
 			<p class="img_description">'.$title.'</p>
 		</div>
 	</a>
+	';
+	return $html;
+}
+
+function itemDetails($idata) {
+	$url_full = $idata['url_full'];
+	debug_to_console($url_full);
+	$title = $idata['title'];
+	$desc = $idata['desc'];
+	$html = '<style>
+	.detailContainer {
+		display: none;
+		padding-top: 100px;
+		margin: auto;
+		width: 70vw;
+		height: 80vh;
+	}
+	.detailContainer h4 {
+		text-align: center;
+		color: white;
+	}
+	.detailContainer img {
+		width: 70vw;
+		height: 65vh;
+		object-fit: contain;
+	}
+	.detail p {
+		width: 75vw;
+		height: 10vh;
+		overflow: auto;
+	}
+	</style>
+	<div class="detailContainer">
+	  	<h4>'.$title.'</h4>
+		<img src="'.$url_full.'">	
+		<p style="color: white;">'.$desc.'</p>
+	</div>
 	';
 	return $html;
 }

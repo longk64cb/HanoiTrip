@@ -120,7 +120,7 @@
 		text-align: center;
 		position: absolute;
 		left: 10px;
-		top: 220px;
+		top: 50%;
 		margin-top: -0.5em;
 		font-size: 60px;
 		font-family: monospace;
@@ -133,7 +133,7 @@
 		text-align: center;
 		position: absolute;
 		right: 10px;
-		top: 220px;
+		top: 50%;
 		margin-top: -0.5em;
 		font-size: 60px;
 		font-family: monospace;
@@ -144,20 +144,15 @@
 	.prev:hover, .next:hover {
     background-color: rgba(30, 30, 30, .6);
 	}
-	.popup {
+
+	.details {
 		display: none;
 		position: fixed;
-		top: 80px;
-		left: 340px;
-		border-radius: 10px;
-		background-color: white;
-	}
-
-	.popup img {
-		width:700px;
-		height:540px;
-		object-fit: contain;
-		margin-left: 50px;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0,0,0,.7);
 	}
 	
 </style>
@@ -223,13 +218,6 @@
 			echo '<div class="prev" onclick="prev()">&lt;</div>';
         	echo '<div class="next" onclick="next()">&gt;</div>';
 			echo '</div>';
-			echo '<div class="popup" style="width:800px; height: 600px;">';
-			echo '<div>';
-			echo '<p style="font-size: 30px; margin-top: 20px; margin-left: 40px; display:inline-block; width:700px;">Images</p>';
-			echo '<p style="display:inline-block; font-size: 26px;" onclick="closePopup()">  X  </p>';
-			echo '</div>';
-			echo '<img style="margin-top:-20px;">';
-			echo '</div>';
 			echo '</div>';
 		}
 		elseif(is_string($value)) {
@@ -251,9 +239,10 @@
 	<script>
 		var slider = document.querySelector('.slider-container');
 		var index = 0;
+		var length = document.querySelectorAll('.item').length;
 
 		function next() {
-			if (index < 3) {
+			if (index < length - 3) {
 			index++;
 			}
 			slider.style.transition = 'transform 0.4s ease-in-out';
@@ -269,17 +258,66 @@
 		}
 	</script>
 
-	<!-- popup script -->
+<?php
+	foreach($d['items'] as $key => $value) {
+		if(is_array($value)) {
+			echo '<div class="details">';
+			for($i=0;$i<sizeof($value);$i++){
+				$itemid = $value[$i];
+				// debug_to_console($itemid);
+				$idata 	= fetchItemData($itemid);
+				// echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
+				// echo htmlItem('',1,$idata,'itemcontent');
+				echo itemDetails($idata);
+			}
+			echo '<div class="prev" onclick="prevDetail()">&lt;</div>';
+        	echo '<div class="next" onclick="nextDetail()">&gt;</div>';
+			echo '</div>';
+		}
+	}
+?>
+	<!-- detail script -->
 	<script>
-		function popupFunc() {
-			var pop = document.querySelector('.popup img');
-			var img = event.target;
-			pop.src = img.src;
-			document.querySelector(".popup").style.display = "block";
+		var detailIndex;
+		function showDetails(element) {
+			document.querySelector(".details").style.display = "block";
+			var items = document.querySelectorAll('.item');	
+			console.log(items);
+			for (let i = 0; i < items.length; i++) {
+				if (items[i] == element) {
+					detailIndex = i;
+					show(detailIndex);
+				}
+			}
 		}
-		function closePopup() {
-			document.querySelector(".popup").style.display = "none";
+
+		function nextDetail() {
+			if (detailIndex < length - 1) {
+			detailIndex++;
+			}
+			console.log(detailIndex);
+			show(detailIndex);
 		}
+
+		function prevDetail() {
+			if (detailIndex > 0) {
+			detailIndex--;
+			}
+			console.log(detailIndex);
+			show(detailIndex);
+		}
+
+		function show(n) {
+			var details = document.querySelectorAll(".detailContainer");
+			for (let i = 0; i < details.length; i++) {
+				if (i == n) {
+					details[i].style.display = "block";
+				} else {
+					details[i].style.display = "none";
+				}
+			}
+		}
+
 		window.onscroll = function() {scrollFunction()};
 
 		function scrollFunction() {
