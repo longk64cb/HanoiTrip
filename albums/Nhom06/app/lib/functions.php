@@ -147,7 +147,7 @@ function itemThumbnail($idata) {
 
 function itemSlider($idata) {
 	$url_full = $idata['url_full'];
-	debug_to_console($url_full);
+	// debug_to_console($url_full);
 	$title	  = $idata['title'];
 	$html = '<style>
     .item {
@@ -206,7 +206,7 @@ function itemSlider($idata) {
 
 function itemDetails($idata) {
 	$url_full = $idata['url_full'];
-	debug_to_console($url_full);
+	// debug_to_console($url_full);
 	$title = $idata['title'];
 	$desc = $idata['desc'];
 	$html = '<style>
