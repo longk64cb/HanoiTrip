@@ -8,8 +8,8 @@
 		"items": [
 			{"title":"Một số ảnh", "value": [8410,8538,8570,8610,8634]},
 			{"title":"GIF", "value": 9218},
-			{"title":"Video giới thiệu", "value": "<iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/Pf7pv2SR5xg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"},
-			{"title":"Tham quan trực tuyến", "value": "<iframe width=\"853\" height=\"480\" src=\"https://truetech.com.vn/VM/Tour360/\" title=\"3D\" frameborder=\"0\" allow=\"accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen scolling=\"no\"></iframe>"}
+			{"title":"Video giới thiệu", "value": 16066},
+			{"title":"Tham quan trực tuyến", "value": 16122}
 		]
 	}
 }

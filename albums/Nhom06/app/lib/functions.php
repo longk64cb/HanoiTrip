@@ -56,6 +56,10 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 		if($ext=='GIF' || $ext=='JPEG'|| $ext=='JPG'|| $ext=='PNG'|| $ext=='TIF'|| $ext=='TIFF'){
 			$vobj .= '<center><img src="'.$url_full.'" style="max-width:90%;"></center>';
 		}
+
+		// if($ext="HTML") {
+		// 	$vobj .=
+		// }
 		
 		//Text
 		if($ext=='TXT'){
