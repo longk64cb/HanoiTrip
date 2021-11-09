@@ -118,30 +118,32 @@
     	display: flex;
 	}
 	.prev{
-		width: 1.2em;
+		width: 65px;
 		text-align: center;
 		position: absolute;
-		left: 10px;
+		left: 20px;
 		top: 50%;
-		margin-top: -0.5em;
+		margin-top: -55px;
 		font-size: 60px;
 		font-family: monospace;
-		border-radius: 5px;
+		border-radius: 10px;
 		color: white;
 		padding-bottom:8px;
+		cursor: pointer;
 	}
 	.next {
-		width: 1.2em;
+		width: 65px;
 		text-align: center;
 		position: absolute;
-		right: 10px;
+		right: 20px;
 		top: 50%;
-		margin-top: -0.5em;
+		margin-top: -55px;
 		font-size: 60px;
 		font-family: monospace;
-		border-radius: 5px;
+		border-radius: 10px;
 		color: white;
 		padding-bottom:8px;
+		cursor: pointer;
 	}
 	.prev:hover, .next:hover {
     background-color: rgba(30, 30, 30, .6);
@@ -155,6 +157,25 @@
 		width: 100vw;
 		height: 100vh;
 		background-color: rgba(0,0,0,.7);
+	}
+
+	#closeDetails {
+		width: 65px;
+		text-align: center;
+		position: absolute;
+		right: 20px;
+		top: 100px;
+		margin-top: -10px;
+		font-size: 40px;
+		font-family: monospace;
+		border-radius: 10px;
+		color: white;
+		padding-bottom:8px;
+		cursor: pointer;
+	}
+
+	#closeDetails:hover {
+    background-color: rgba(30, 30, 30, .6);
 	}
 	
 </style>
@@ -277,6 +298,7 @@
 				// echo htmlItem('',1,$idata,'itemcontent');
 				echo itemDetails($idata);
 			}
+			echo '<div id="closeDetails" onclick="closeDetails()">X</div>';
 			echo '<div class="prev" onclick="prevDetail()">&lt;</div>';
         	echo '<div class="next" onclick="nextDetail()">&gt;</div>';
 			echo '</div>';
@@ -302,6 +324,9 @@
 			if (detailIndex < length - 1) {
 			detailIndex++;
 			}
+			if (detailIndex == length - 1) {
+				detailIndex = 0;
+			}
 			console.log(detailIndex);
 			show(detailIndex);
 		}
@@ -309,6 +334,9 @@
 		function prevDetail() {
 			if (detailIndex > 0) {
 			detailIndex--;
+			}
+			if (detailIndex == 0) {
+				detailIndex = length - 1;
 			}
 			console.log(detailIndex);
 			show(detailIndex);
@@ -323,6 +351,10 @@
 					details[i].style.display = "none";
 				}
 			}
+		}
+
+		function closeDetails() {
+			document.querySelector(".details").style.display = "none";
 		}
 
 		window.onscroll = function() {scrollFunction()};

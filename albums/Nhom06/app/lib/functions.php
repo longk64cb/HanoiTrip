@@ -216,7 +216,7 @@ function itemDetails($idata) {
 	$html = '<style>
 	.detailContainer {
 		display: none;
-		padding-top: 100px;
+		padding-top: 90px;
 		margin: auto;
 		width: 70vw;
 		height: 80vh;
@@ -229,6 +229,7 @@ function itemDetails($idata) {
 		width: 70vw;
 		height: 65vh;
 		object-fit: contain;
+		padding: 10px;
 	}
 	.detail p {
 		width: 75vw;
