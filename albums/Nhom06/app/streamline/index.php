@@ -163,7 +163,7 @@
 		width: 65px;
 		text-align: center;
 		position: absolute;
-		right: 20px;
+		right: 100px;
 		top: 100px;
 		margin-top: -10px;
 		font-size: 40px;
@@ -271,6 +271,8 @@
 		function next() {
 			if (index < length - 3) {
 			index++;
+			} else {
+				index = 0;
 			}
 			slider.style.transition = 'transform 0.4s ease-in-out';
 			slider.style.transform = 'translateX(-'+ 340 * index + 'px)';
@@ -279,7 +281,9 @@
 		function prev() {
 			if (index > 0) {
 				index--;
-			} 
+			} else {
+				index = length - 3;
+			}
 			slider.style.transition = 'transform 0.4s ease-in-out';
 			slider.style.transform = 'translateX(-' + 340 * index + 'px)';
 		}
@@ -299,8 +303,8 @@
 				echo itemDetails($idata);
 			}
 			echo '<div id="closeDetails" onclick="closeDetails()">X</div>';
-			echo '<div class="prev" onclick="prevDetail()">&lt;</div>';
-        	echo '<div class="next" onclick="nextDetail()">&gt;</div>';
+			echo '<div class="prev" onclick="prevDetail()" style= "left: 100px">&lt;</div>';
+        	echo '<div class="next" onclick="nextDetail()" style= "right: 100px">&gt;</div>';
 			echo '</div>';
 		}
 	}
@@ -311,7 +315,7 @@
 		function showDetails(element) {
 			document.querySelector(".details").style.display = "block";
 			var items = document.querySelectorAll('.item');	
-			console.log(items);
+			console.log(length);
 			for (let i = 0; i < items.length; i++) {
 				if (items[i] == element) {
 					detailIndex = i;
@@ -321,11 +325,10 @@
 		}
 
 		function nextDetail() {
-			if (detailIndex < length - 1) {
-			detailIndex++;
-			}
 			if (detailIndex == length - 1) {
 				detailIndex = 0;
+			}else if (detailIndex < length - 1) {
+			detailIndex++;
 			}
 			console.log(detailIndex);
 			show(detailIndex);
@@ -334,8 +337,7 @@
 		function prevDetail() {
 			if (detailIndex > 0) {
 			detailIndex--;
-			}
-			if (detailIndex == 0) {
+			}else if (detailIndex == 0) {
 				detailIndex = length - 1;
 			}
 			console.log(detailIndex);
