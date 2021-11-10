@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-    <title>Admin</title>
+  <title>Admin</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-<div class="wrapper">
-    <form onsubmit="getData()" class="box" action="index.html" method="post">
-        <h1>UPDATE</h1>
-        <input id="title" type="text" name="" placeholder="Tiêu đề" required>
-        <input id="desc" type="text" name="" placeholder="Mô tả" required>
-        <input id="photo" type="text" name="" placeholder="ID ảnh" required>
-        <input id="gif" type="text" name="" placeholder="ID ảnh động" required>
-        <input id="video" type="text" name="" placeholder="ID video" required>
-        <input id="3d" type="text" name="" placeholder="ID 3D" required>
-        <input type="submit" name="" value="Xác nhận" required>
-    </form>
-</div>
-    
 
-    <script src="script.js"></script>
+  <h1>Update thông tin</h1>
+  <form action="" name="form1">
+    <div class="wrapper">
+        <div id="survey_options">
+          <input type="text" name="survey_options[]" id="title" class="survey_options" size="50" placeholder="Tiêu đề">
+          <input type="text" name="survey_options[]" id="desc" class="survey_options" size="50" placeholder="Mô tả">
+          <!-- <input type="text" name="survey_options[]" class="survey_options" size="50" placeholder="Loại item">
+          <input type="text" name="survey_options[]" class="survey_options" size="50" placeholder="ID"> -->
+        </div>
+        <div class="controls">
+          <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Thêm item</a>
+          <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Xóa item</a>
+        </div>
+        <button onclick="getData()">Xác nhận</button>
+      </div>
+  </form>
+  
+<script src="script.js"></script>
 </body>
 </html>
