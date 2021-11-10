@@ -152,7 +152,10 @@
 				$idata 	= fetchItemData($itemid);
 				echo itemDetails($idata);
 			}
-			echo '<div id="closeDetails" onclick="closeDetails()">X</div>';
+			echo '<div id="closeDetails" onclick="closeDetails()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+			<path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+		  </svg></div>';
 			echo '<div class="prev" onclick="prevDetail()" style= "left: 100px">&lt;</div>';
         	echo '<div class="next" onclick="nextDetail()" style= "right: 100px">&gt;</div>';
 			echo '</div>';
