@@ -69,7 +69,12 @@
 	}
 
 	.content {
-		margin: 50px auto;
+		margin: 80px auto;
+		height: auto;
+	}
+
+	.caption {
+		top: 50%;
 	}
 
 	/* css itemslider */

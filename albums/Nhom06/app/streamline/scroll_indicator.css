@@ -81,6 +81,9 @@
         overflow: visible;
         transform: translateY(-50%) translateX(0)
     }
+    .scroll-indicator-controller>div:hover {
+        background: rgba(252, 164, 2, 0.315);
+    }
 }
 
 .scroll-indicator-controller>div.active {
