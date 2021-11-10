@@ -1,0 +1,15 @@
+{
+	"trealet":{
+		"exec":"streamline",
+		"title":"Lăng Chủ Tịch",
+		"imgFront": 18690,
+		"author":"Nhom06",
+		"desc":"Lăng Chủ tịch Hồ Chí Minh, còn gọi là Lăng Hồ Chủ tịch, Lăng Bác, là nơi gìn giữ thi hài Hồ Chí Minh. Lăng được chính thức khởi công ngày 2 tháng 9 năm 1973, tại vị trí của lễ đài cũ giữa Quảng trường Ba Đình, nơi Hồ Chí Minh từng chủ trì các cuộc meeting.",
+		"items": [
+			{"title":"Một số ảnh", "value": [18690,18666,18674,8690,8594]},
+			{"title":"Góc nhìn trực diện", "value": 8690},
+			{"title":"Video giới thiệu", "value": 16066},
+			{"title":"Mô hình 3D", "value": 18682}
+		]
+	}
+}

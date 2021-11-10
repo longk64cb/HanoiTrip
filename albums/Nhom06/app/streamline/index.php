@@ -60,6 +60,8 @@
 			<!-- <a role="button" class="btn btn-light smoothscroll" href="#main">Khám phá</a> -->
 		</div>
     </div>
+	<div><div class="scroll-indicator" id="sectionDesc" data-scroll-indicator-title="Giới thiệu"></div></div>
+
   <div id="main">
     <div id="header" class="container">
       <div id="logo">
@@ -81,17 +83,14 @@
 		$title = $d['items'][$i]['title'];
 		$value = $d['items'][$i]['value'];
 		if(is_array($value)) {
-			echo '<div><div class="scroll-indicator" id="section'.($i+1).'" data-scroll-indicator-title="'.$title.'"></div></div>';
-			echo '<div class="content">';
-			echo '<h1 class="title">'.$title.'</h1>';
+			echo '<hr><div><div class="scroll-indicator" id="section'.($i+1).'" data-scroll-indicator-title="'.$title.'"></div></div>';
+			echo '<div class="content container">';
+			echo '<h1 class="title"><span>'.$title.'</span></h1>';
 			echo '<div class="slider">';
 			echo '<div class="slider-container">';
 			for($j=0;$j<sizeof($value);$j++){
 				$itemid = $value[$j];
-				// debug_to_console($itemid);
 				$idata 	= fetchItemData($itemid);
-				// echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
-				// echo htmlItem('',1,$idata,'itemcontent');
 				echo itemSlider($idata);
 			}
 			echo '</div>';
@@ -101,16 +100,16 @@
 			echo '</div>';
 		}
 		else if(is_string($value)) {
-			echo '<div><div class="scroll-indicator" id="section'.($i+1).'" data-scroll-indicator-title="'.$title.'"></div></div>';
-            echo '<div class="content"><h1 class="title">'.$title.'</h1>';
+			echo '<hr><div><div class="scroll-indicator" id="section'.($i+1).'" data-scroll-indicator-title="'.$title.'"></div></div>';
+            echo '<div class="content container-fluid"><h1 class="title"><span>'.$title.'</span></h1>';
             echo '<div style="text-align: center;">';
             echo $value;
             echo '</div></div>';
         }
 		else {
 			$idata 	= fetchItemData($value);
-			echo '<div><div class="scroll-indicator" id="section'.($i+1).'" data-scroll-indicator-title="'.$title.'"></div></div>';
-			echo '<div class="content">';
+			echo '<hr><div><div class="scroll-indicator" id="section'.($i+1).'" data-scroll-indicator-title="'.$title.'"></div></div>';
+			echo '<div class="content container">';
 			echo htmlItem('',1,$idata);
 			echo '</div>';
 		}
@@ -150,10 +149,7 @@
 			echo '<div class="details">';
 			for($j=0;$j<sizeof($value);$j++){
 				$itemid = $value[$j];
-				// debug_to_console($itemid);
 				$idata 	= fetchItemData($itemid);
-				// echo '<div><div class="scroll-indicator" id="section0'.($i+1).'" data-scroll-indicator-title="'.$idata['title'].'"></div></div>';        
-				// echo htmlItem('',1,$idata,'itemcontent');
 				echo itemDetails($idata);
 			}
 			echo '<div id="closeDetails" onclick="closeDetails()">X</div>';
@@ -294,19 +290,19 @@ function scrollIndiClicked(t) {
                 n = $("#" + t);
             if (!0 === dotFixedNavUp) {
                 e.animate({
-                    scrollTop: n.offset().top - dotOffset - 75
+                    scrollTop: n.offset().top - dotOffset - 40
                 }, 700);
                 const t = document.body.getBoundingClientRect().top;
                 setTimeout(function() {
                     document.body.getBoundingClientRect().top > t && e.animate({
-                        scrollTop: n.offset().top - o - dotOffset - 75
+                        scrollTop: n.offset().top - o - dotOffset - 40
                     }, 400)
                 }, 400)
             } else e.animate({
-                scrollTop: n.offset().top - o - dotOffset - 75
+                scrollTop: n.offset().top - o - dotOffset - 40
             }, 700)
         } else e.animate({
-            scrollTop: $("#" + t).offset().top - dotOffset - 75
+            scrollTop: $("#" + t).offset().top - dotOffset - 40
         }, 700)
     } else if (!0 === dotFixedNavPresent && dotFixedNavId.length) {
         const e = document.getElementById(dotFixedNavId).clientHeight,
