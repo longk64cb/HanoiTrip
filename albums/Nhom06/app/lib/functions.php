@@ -171,7 +171,7 @@ function itemSlider($idata) {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background: rgba(36, 62, 206, 0.6);
+		background: rgba(4, 4, 15, 0.6);
 		color: #fff;
 		visibility: hidden;
 		opacity: 0;
@@ -201,7 +201,7 @@ function itemSlider($idata) {
 	<a class="item" onClick="showDetails(this)">
 		<img src="'.$url_full.'">
 		<div class="img__description_layer">	
-			<p class="img_description">'.$title.'</p>
+			<h3 class="img_description">'.$title.'</h3>
 		</div>
 	</a>
 	';
