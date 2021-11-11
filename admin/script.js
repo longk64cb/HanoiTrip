@@ -60,21 +60,18 @@ function getData() {
 		for (let i = 0; i < type.length; i++) {
 			if (i == type.length - 1)
 				if (id[i].value.includes(','))
-					trealetItem += `\t\t\t\{\"title\":\"${type[i]}\", \"value\":[${id[i]}]\}\n`;
+					trealetItem += `\t\t\t\{\"title\":\"${type[i].value}\", \"value\":[${id[i].value}]\}\n`;
 				else
-				trealetItem += `\t\t\t\{\"title\":\"${type[i]}\", \"value\":${id[i]}\}\n`;
+				trealetItem += `\t\t\t\{\"title\":\"${type[i].value}\", \"value\":${id[i].value}\}\n`;
 			else
 				if (id[i].value.includes(','))
-					trealetItem += `\t\t\t\{\"title\":\"${type[i]}\", \"value\":[${id[i]}]\},\n`;
+					trealetItem += `\t\t\t\{\"title\":\"${type[i]}\", \"value\":[${id[i].value}]\},\n`;
 				else
 				trealetItem += `\t\t\t\{\"title\":\"${type[i].value}\", \"value\":${id[i].value}\},\n`;
 		}
 		trealet = trealetHeader + trealetItem + trealetFooter;
 		console.log(trealet);
-        // itemPhoto = "\t\t\t\{\"title\":\"Một số ảnh\", \"value\":" + photo + "},\n";
-        // itemGif = "\t\t\t\{\"title\":\"GIF\", \"value\": " + gif + "},\n";
-        // itemVideo =  "\t\t\t\{\"title\":\"Video giới thiệu\", \"value\": " + video + "},\n";
-        // item3d = "\t\t\t\{\"title\":\"Tham quan trực tuyến\", \"value\": " + _3d + "}\n";
+        
     download('newFile.trealet', trealet);
 }
 
