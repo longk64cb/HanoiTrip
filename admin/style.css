@@ -7,7 +7,7 @@ body {
 }
 
 .wrapper {
-  width: 400px;
+  width: 600px;
   margin: 40px auto;
   padding: 10px;
   border-radius: 5px;
@@ -22,12 +22,16 @@ input[type="text"]{
   border-radius: 5px;
   border: 1px solid lightgrey;
   background: none;
-  width: 274px;
+  width: 500px;
   color: black;
 }
 
 input[type="text"]:focus {
   outline: none;
+}
+
+#desc {
+    height: 200px;
 }
 
 .controls {
