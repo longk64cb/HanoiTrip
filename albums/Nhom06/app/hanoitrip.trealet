@@ -1,11 +1,15 @@
 {
 	"trealet": {
+		"exec":"streamline",
 		"title" : "Hanoi Trip",
 		"imgFront": 18690,
 		"desc" : "Tìm hiểu về công trình kiến trúc lịch sử Hà Nội",
 		"places": [
 			{
 				"title":"Văn Miếu Quốc Tử Giám",
+				"x": 6,
+				"y": 4,
+				"imgRPG": 8538,
 				"imgFront": 8410,
 				"desc":"Văn Miếu được xây dựng năm 1070 dưới thời vua Lý Thánh Tông, là nơi thờ Khổng Tử, Chu Công và Tứ phối. Đến năm 1076, vua Lý Nhân Tông cho lập thêm Quốc Tử Giám bên cạnh là trường đại học dành riêng cho con vua và các gia đình quý tộc. Đến thời vua Trần Thái Tông, Quốc Tử Giám được đổi tên thành Quốc học viện và thu nhận cả con cái nhà thường dân có sức học xuất sắc.",
 				"items": [
@@ -17,6 +21,9 @@
 			},
 			{
 				"title":"Lăng Chủ Tịch",
+				"x": 1,
+				"y": 4,
+				"imgRPG": 8690,
 				"imgFront": 18690,
 				"desc":"Lăng Chủ tịch Hồ Chí Minh, còn gọi là Lăng Hồ Chủ tịch, Lăng Bác, là nơi gìn giữ thi hài Hồ Chí Minh. Lăng được chính thức khởi công ngày 2 tháng 9 năm 1973, tại vị trí của lễ đài cũ giữa Quảng trường Ba Đình, nơi Hồ Chí Minh từng chủ trì các cuộc meeting.",
 				"items": [
