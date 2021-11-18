@@ -47,13 +47,12 @@
                         <div class="shadow pixel-art"></div>
                         <div class="character_spritesheet pixel-art"></div>
                     </div>
+                    <div class="text">        
+                        <svg class="corner" viewBox="0 0 65 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M35 3.5L65 6.5V62L0 0L35 3.5Z" fill="white"/>
+                        </svg>
+                    </div>
                 </div>
-                <div class="text">        
-                    <svg class="corner" viewBox="0 0 65 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M35 3.5L65 6.5V62L0 0L35 3.5Z" fill="white"/>
-                    </svg>
-                </div>
-                
             </div>
         
 
@@ -105,7 +104,6 @@
                             </svg>
                         </button>
                     </div>
-                    
             </div>
             
             
@@ -119,11 +117,6 @@
         <path stroke="#cccccc" d="M1 12h73" />
         </svg> -->
             
-        
-            
-            
-            </div>
-        </div>
         </div>
         
         <?php
@@ -167,6 +160,36 @@
             }
         ?>
 
+        <script src="script.js"></script>
+        <script src="text.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script>
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function ( popoverTrigger ) {
+                return new bootstrap.Popover(popoverTrigger)
+            });      
+        </script>
+
+        <script>
+            function showOff(n) {
+                showOffs = document.querySelectorAll('.showOff');
+                for (let i = 0; i < showOffs.length; i++) {
+                    if (i == parseInt(n)) {
+                        showOffs[i].style.display = 'block';
+                    } else {
+                        showOffs[i].style.display = 'none';
+                    }
+                }
+            }
+            function closeShowOff() {
+                showOffs = document.querySelectorAll('.showOff');
+                for (let i = 0; i < showOffs.length; i++) {
+                    showOffs[i].style.display = 'none';
+                }
+            }
+        </script>
         <!-- slider script -->
         <script>
             var sliderIndex = 0;
@@ -273,35 +296,6 @@
             }
         </script>
 
-        <script src="script.js"></script>
-        <script src="text.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <script>
-            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-            var popoverList = popoverTriggerList.map(function ( popoverTrigger ) {
-                return new bootstrap.Popover(popoverTrigger)
-            });      
-        </script>
-
-        <script>
-            function showOff(n) {
-                showOffs = document.querySelectorAll('.showOff');
-                for (let i = 0; i < showOffs.length; i++) {
-                    if (i == parseInt(n)) {
-                        showOffs[i].style.display = 'block';
-                    } else {
-                        showOffs[i].style.display = 'none';
-                    }
-                }
-            }
-            function closeShowOff() {
-                showOffs = document.querySelectorAll('.showOff');
-                for (let i = 0; i < showOffs.length; i++) {
-                    showOffs[i].style.display = 'none';
-                }
-            }
-        </script>
+        
     </body>
 </html>
