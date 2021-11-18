@@ -153,7 +153,7 @@ function itemThumbnail($idata) {
 	return $html;
 }
 
-function itemSlider($idata) {
+function itemSlider($idata, $k) {
 	$url_full = $idata['url_full'];
 	// debug_to_console($url_full);
 	$title	  = $idata['title'];
@@ -202,7 +202,7 @@ function itemSlider($idata) {
 		transform: translateY(0);
 	  }
 	</style>
-	<a class="item" onClick="showDetails(this)">
+	<a class="item" onClick="showDetails(this, '.$k.')">
 		<img src="'.$url_full.'">
 		<div class="img__description_layer">	
 			<h3 class="img_description">'.$title.'</h3>
