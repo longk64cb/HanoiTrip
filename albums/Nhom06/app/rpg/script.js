@@ -1,6 +1,7 @@
 var character = document.querySelector(".character");
 var map = document.querySelector(".map");
 var places = document.querySelectorAll(".place");
+var text = document.querySelector(".text");
 // var shadow = document.querySelector(".shadow");
 
 //start in the middle of the map
@@ -33,7 +34,7 @@ const placeCharacter = () => {
    var leftLimit = -8;
    var rightLimit = (16 * 23)+8;
    var topLimit = -8 + 32;
-   var bottomLimit = (16 * 11);
+   var bottomLimit = (16 * 25);
    if (x < leftLimit) { x = leftLimit; }
    if (x > rightLimit) { x = rightLimit; }
    if (y < topLimit) { y = topLimit; }
@@ -45,6 +46,7 @@ const placeCharacter = () => {
    
    map.style.transform = `translate3d( ${-x*pixelSize+camera_left}px, ${-y*pixelSize+camera_top}px, 0 )`;
    character.style.transform = `translate3d( ${x*pixelSize}px, ${y*pixelSize}px, 0 )`; 
+   text.style.transform = `translate3d( ${(x-110)*pixelSize}px, ${(y-60)*pixelSize}px, 0 )`; 
    places.forEach((place) => {
        let xCor = place.getAttribute("x");
        let yCor = place.getAttribute("y");

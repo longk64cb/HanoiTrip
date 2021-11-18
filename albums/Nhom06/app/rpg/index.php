@@ -8,7 +8,9 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
+        <title>HaNoiTrip</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="logo.png" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
     </head>
@@ -46,6 +48,13 @@
                         <div class="character_spritesheet pixel-art"></div>
                     </div>
                 </div>
+                <div class="text">        
+                    <svg class="corner" viewBox="0 0 65 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M35 3.5L65 6.5V62L0 0L35 3.5Z" fill="white"/>
+                    </svg>
+                </div>
+                
+            </div>
         
 
         
@@ -96,10 +105,11 @@
                             </svg>
                         </button>
                     </div>
+                    
             </div>
             
             
-            <svg class="headline" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 75 14" shape-rendering="crispEdges">
+            <!-- <svg class="headline" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 75 14" shape-rendering="crispEdges">
         <metadata>Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj</metadata>
         <path stroke="rgba(128,191,255,0.01568627450980392)" d="M0 0h1M74 0h1M0 13h1M74 13h1" />
         <path stroke="#5f5f5f" d="M1 0h73M0 1h1M74 1h1M0 2h1M74 2h1M0 3h1M74 3h1M0 4h1M74 4h1M0 5h1M74 5h1M0 6h1M74 6h1M0 7h1M74 7h1M0 8h1M74 8h1M0 9h1M74 9h1M0 10h1M74 10h1M0 11h1M74 11h1" />
@@ -107,7 +117,12 @@
         <path stroke="#323234" d="M4 3h3M19 3h2M43 3h2M5 4h1M19 4h1M21 4h1M42 4h1M45 4h1M5 5h1M8 5h2M12 5h3M19 5h1M22 5h1M25 5h2M29 5h1M31 5h1M33 5h1M35 5h3M42 5h1M48 5h2M52 5h4M59 5h2M64 5h2M67 5h2M5 6h1M7 6h1M10 6h1M12 6h1M15 6h1M19 6h1M22 6h1M24 6h1M27 6h1M29 6h1M31 6h1M33 6h1M35 6h1M38 6h1M42 6h1M50 6h1M52 6h1M54 6h1M56 6h1M58 6h1M61 6h1M63 6h1M69 6h1M5 7h1M7 7h1M10 7h1M12 7h1M15 7h1M19 7h1M22 7h1M24 7h1M27 7h1M29 7h1M31 7h1M33 7h1M35 7h1M38 7h1M42 7h1M48 7h3M52 7h1M54 7h1M56 7h1M58 7h4M63 7h1M67 7h3M5 8h1M7 8h1M10 8h1M12 8h1M15 8h1M19 8h1M21 8h1M24 8h1M27 8h1M29 8h1M31 8h1M33 8h1M35 8h1M38 8h1M42 8h1M45 8h1M47 8h1M50 8h1M52 8h1M54 8h1M56 8h1M58 8h1M63 8h1M66 8h1M69 8h1M5 9h1M8 9h2M12 9h3M19 9h2M25 9h2M30 9h4M35 9h1M38 9h1M43 9h2M48 9h3M52 9h1M54 9h1M56 9h1M59 9h3M63 9h1M67 9h3M12 10h1M12 11h1" />
         <path stroke="#434343" d="M0 12h1M74 12h1M1 13h73" />
         <path stroke="#cccccc" d="M1 12h73" />
-        </svg>
+        </svg> -->
+            
+        
+            
+            
+            </div>
         </div>
         </div>
         
@@ -259,6 +274,7 @@
         </script>
 
         <script src="script.js"></script>
+        <script src="text.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
