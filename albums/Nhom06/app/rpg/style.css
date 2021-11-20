@@ -120,8 +120,9 @@ h4 {
    visibility: hidden;
    position: absolute;
    /* display: flex; */
+   border: 6px solid #ffc107;
    justify-content: center;
-/*     top: -50px; */
+   /*     top: -50px; */
    transform: translate(0, 10px);
    background-color: #fff176;
    padding: 1rem;
@@ -139,7 +140,7 @@ h4 {
    z-index: -1;
    content: "";
    right: calc(50% - 10px);
-   bottom: -10px;
+   bottom: -17px;
    border-style: solid;
    /* border-width: 0 10px 10px 10px;
    border-color: transparent transparent #6dff91 transparent; */
@@ -148,7 +149,7 @@ h4 {
    border-left: 10px solid transparent;
    border-right: 10px solid transparent;
    
-   border-top: 10px solid #fff176;
+   border-top: 10px solid #ffc107;
    transition-duration: 0.3s;
    transition-property: transform;
  }
@@ -165,7 +166,7 @@ h4 {
    opacity: 1;
    visibility: visible;
    transform: translate(0, -20px);
-/*     transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97); */
+/*     transition: all 0.1s cubic-bezier(0.75, -0.02, 0.2, 0.97); */
 }  
 
 .shadow {
@@ -208,7 +209,7 @@ h4 {
   }
 }
 
-.dpad {
+/* .dpad {
    position:absolute;
    right: calc(var(--pixel-size) * 2);
    bottom: calc(var(--pixel-size) * 2);
@@ -254,7 +255,7 @@ h4 {
 
 .dpad {
    user-select:none;
-}
+} */
 
 
 .corner_topleft,
