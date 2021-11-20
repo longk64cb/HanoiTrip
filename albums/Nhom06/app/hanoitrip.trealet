@@ -7,7 +7,7 @@
 		"places": [
 			{
 				"title":"Văn Miếu Quốc Tử Giám",
-				"x": 6,
+				"x": 1,
 				"y": 4,
 				"imgRPG": 8538,
 				"imgFront": 8410,
@@ -21,7 +21,7 @@
 			},
 			{
 				"title":"Lăng Chủ Tịch",
-				"x": 1,
+				"x": 6,
 				"y": 4,
 				"imgRPG": 8690,
 				"imgFront": 18690,
@@ -31,6 +31,66 @@
 					{"title":"Góc nhìn trực diện", "value": 8690},
 					{"title":"Video giới thiệu", "value": 16066},
 					{"title":"Mô hình 3D", "value": 18682}
+				]
+			},
+			{
+				"title":"Tháp Rùa",
+				"x": 15,
+				"y": 4,
+				"imgRPG": 8546,
+				"imgFront": 18690,
+				"desc":"Tháp Rùa là một ngọn tháp nhỏ nằm trên gò đảo giữa Hồ Hoàn Kiếm, lui về phía Nam hồ, Hà Nội, Việt Nam.",
+				"items": [
+				]
+			},
+			{
+				"title":"Nhà hát lớn",
+				"x": 20,
+				"y": 4,
+				"imgRPG": 8626,
+				"imgFront": 8626,
+				"desc":"",
+				"items": [
+				]
+			},
+			{
+				"title":"Cầu Long Biên",
+				"x": 1,
+				"y": 9,
+				"imgRPG": 8578,
+				"imgFront": 8578,
+				"desc":"",
+				"items": [
+				]
+			},
+			{
+				"title":"Chùa Một Cột",
+				"x": 6,
+				"y": 9,
+				"imgRPG": 20954,
+				"imgFront": 8578,
+				"desc":"",
+				"items": [
+				]
+			},
+			{
+				"title":"Nhà Thờ Lớn",
+				"x": 15,
+				"y": 9,
+				"imgRPG": 20946,
+				"imgFront": 8578,
+				"desc":"",
+				"items": [
+				]
+			},
+			{
+				"title":"Cột Cờ Ba Đình",
+				"x": 20,
+				"y": 9,
+				"imgRPG": 20938,
+				"imgFront": 8578,
+				"desc":"",
+				"items": [
 				]
 			}
 		]

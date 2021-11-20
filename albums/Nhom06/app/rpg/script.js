@@ -2,6 +2,9 @@ var character = document.querySelector(".character");
 var map = document.querySelector(".map");
 var places = document.querySelectorAll(".place");
 var text = document.querySelector(".text");
+var popOver = document.querySelector(".popover-content")
+var destinationInfo = document.getElementById("destinationInfo");
+var infoButton = document.getElementById("infoButton");
 // var shadow = document.querySelector(".shadow");
 
 //start in the middle of the map
@@ -9,16 +12,29 @@ var x = 185;
 var y = 56;
 var held_directions = []; //State of which arrow keys we are holding down
 var speed = 1; //How fast the character moves in pixels per frame
+var destination = {
+   x: x,
+   y: y
+}
+
+var pixelSize = parseInt(
+   getComputedStyle(document.documentElement).getPropertyValue('--pixel-size')
+);
+
+var gridCell = pixelSize * 16;
+
+map.onclick = function clickEvent(e) {
+   // e = Mouse click event.
+   var rect = e.currentTarget.getBoundingClientRect();
+   var xDes = e.clientX - rect.left; //x position within the element.
+   destination.x = Math.round(xDes / pixelSize -16);
+   var yDes = e.clientY - rect.top;  //y position within the element.
+   destination.y = Math.round(yDes / pixelSize -28);
+   console.log("Left? : " + destination.x + " ; Top? : " + destination.y + ".");
+      console.log("Left? : " + x + " ; Top? : " + y + ".");
+ }
 
 const placeCharacter = () => {
-   
-   var pixelSize = parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue('--pixel-size')
-   );
-
-   var gridCell = pixelSize * 16;
-
-    // console.log(gridCell);
    
    const held_direction = held_directions[0];
    if (held_direction) {
@@ -27,6 +43,8 @@ const placeCharacter = () => {
       if (held_direction === directions.down) {y += speed;}
       if (held_direction === directions.up) {y -= speed;}
       character.setAttribute("facing", held_direction);
+      // console.log(x);
+      // console.log(y);
    }
    character.setAttribute("walking", held_direction ? "true" : "false");
    
@@ -35,10 +53,10 @@ const placeCharacter = () => {
    var rightLimit = (16 * 23)+8;
    var topLimit = -8 + 32;
    var bottomLimit = (16 * 25);
-   if (x < leftLimit) { x = leftLimit; }
-   if (x > rightLimit) { x = rightLimit; }
-   if (y < topLimit) { y = topLimit; }
-   if (y > bottomLimit) { y = bottomLimit; }
+   if (x < leftLimit) { x = leftLimit; destination.x = x}
+   if (x > rightLimit) { x = rightLimit; destination.x = x}
+   if (y < topLimit) { y = topLimit; destination.y = y}
+   if (y > bottomLimit) { y = bottomLimit; destination.y = y}
    
    
    var camera_left = pixelSize * 210;
@@ -47,7 +65,10 @@ const placeCharacter = () => {
    map.style.transform = `translate3d( ${-x*pixelSize+camera_left}px, ${-y*pixelSize+camera_top}px, 0 )`;
    character.style.transform = `translate3d( ${x*pixelSize}px, ${y*pixelSize}px, 0 )`; 
    text.style.transform = `translate3d( ${(x-110)*pixelSize}px, ${(y-60)*pixelSize}px, 0 )`; 
+   popOver.style.transform = `translate3d( ${(x-24)*pixelSize}px, ${(y-37)*pixelSize}px, 0 )`; 
+
    places.forEach((place) => {
+      let title = place.getAttribute("title");
        let xCor = place.getAttribute("x");
        let yCor = place.getAttribute("y");
        place.style.transform = `translate3d( ${xCor*gridCell+1}px, ${yCor*gridCell+1}px, 0 )`;
@@ -58,17 +79,57 @@ const placeCharacter = () => {
         rect1.bottom < rect2.top || 
         rect1.top + 80 > rect2.bottom)
        if (overlap) {
+          if(!place.classList.contains("placeHover") && !character.classList.contains("characterHover")) {
             place.classList.add("placeHover");
-            // place.
+            destinationInfo.innerHTML = title;
+            character.setAttribute("position", title);
+            infoButton.setAttribute("name", place.getAttribute("id"));
+            character.classList.add("characterHover");
+          }
        } else {
            place.classList.remove("placeHover");
+           if (character.getAttribute("position") == title) {
+               //   console.log("Dính");
+            character.classList.remove("characterHover");
+           }
        }
    })
+}
+
+const destinationMove = () => {
+   if (destination.x == x && destination.y == y) {
+         return 0;
+   }
+//    if (destination.x == null && destination.y == null) {
+//          held_directions = [];
+//          return 0;
+//    }
+   if (destination.y != null) {
+      if (y > destination.y) {
+         held_directions.unshift("up");
+      } else if (y < destination.y) {
+         held_directions.unshift("down");
+      } else {
+         held_directions = [];
+         destination.y = null;
+      }
+   }
+   if (destination.x != null) {
+      if (x > destination.x) {
+         held_directions.unshift("left");
+      } else if (x < destination.x) {
+         held_directions.unshift("right");
+      } else {
+         held_directions = [];
+         destination.x = null;
+      }
+   }
 }
 
 
 //Set up the game loop
 const step = () => {
+   destinationMove();
    placeCharacter();
    window.requestAnimationFrame(() => {
       step();
@@ -90,6 +151,10 @@ const keys = {
    37: directions.left,
    39: directions.right,
    40: directions.down,
+   65: directions.left,
+   87: directions.up,
+   68: directions.right,
+   83: directions.down
 }
 document.addEventListener("keydown", (e) => {
    var dir = keys[e.which];
@@ -107,53 +172,46 @@ document.addEventListener("keyup", (e) => {
 });
 
 
-
 /* BONUS! Dpad functionality for mouse and touch */
-var isPressed = false;
-const removePressedAll = () => {
-   document.querySelectorAll(".dpad-button").forEach(d => {
-      d.classList.remove("pressed")
-   })
-}
-document.body.addEventListener("mousedown", () => {
-   console.log('mouse is down')
-   isPressed = true;
-})
-document.body.addEventListener("mouseup", () => {
-   console.log('mouse is up')
-   isPressed = false;
-   held_directions = [];
-   removePressedAll();
-})
-const handleDpadPress = (direction, click) => {   
-   if (click) {
-      isPressed = true;
-   }
-   held_directions = (isPressed) ? [direction] : []
+// var isPressed = false;
+// const removePressedAll = () => {
+//    document.querySelectorAll(".dpad-button").forEach(d => {
+//       d.classList.remove("pressed")
+//    })
+// }
+// document.body.addEventListener("mousedown", () => {
+//    console.log('mouse is down')
+//    isPressed = true;
+// })
+// document.body.addEventListener("mouseup", () => {
+//    console.log('mouse is up')
+//    isPressed = false;
+//    held_directions = [];
+//    removePressedAll();
+// })
+// const handleDpadPress = (direction, click) => {   
+//    if (click) {
+//       isPressed = true;
+//    }
+//    held_directions = (isPressed) ? [direction] : []
    
-   if (isPressed) {
-      removePressedAll();
-      document.querySelector(".dpad-"+direction).classList.add("pressed");
-   }
-}
-//Bind a ton of events for the dpad
-document.querySelector(".dpad-left").addEventListener("touchstart", (e) => handleDpadPress(directions.left, true));
-document.querySelector(".dpad-up").addEventListener("touchstart", (e) => handleDpadPress(directions.up, true));
-document.querySelector(".dpad-right").addEventListener("touchstart", (e) => handleDpadPress(directions.right, true));
-document.querySelector(".dpad-down").addEventListener("touchstart", (e) => handleDpadPress(directions.down, true));
+//    if (isPressed) {
+//       removePressedAll();
+//       document.querySelector(".dpad-"+direction).classList.add("pressed");
+//    }
+// }
+// //Bind a ton of events for the dpad
+// document.querySelector(".dpad-left").addEventListener("touchstart", (e) => handleDpadPress(directions.left, true));
+// document.querySelector(".dpad-up").addEventListener("touchstart", (e) => handleDpadPress(directions.up, true));
+// document.querySelector(".dpad-right").addEventListener("touchstart", (e) => handleDpadPress(directions.right, true));
+// document.querySelector(".dpad-down").addEventListener("touchstart", (e) => handleDpadPress(directions.down, true));
 
-document.querySelector(".dpad-left").addEventListener("mousedown", (e) => handleDpadPress(directions.left, true));
-document.querySelector(".dpad-up").addEventListener("mousedown", (e) => handleDpadPress(directions.up, true));
-document.querySelector(".dpad-right").addEventListener("mousedown", (e) => handleDpadPress(directions.right, true));
-document.querySelector(".dpad-down").addEventListener("mousedown", (e) => handleDpadPress(directions.down, true));
+// document.querySelector(".dpad-left").addEventListener("mousedown", (e) => handleDpadPress(directions.left, true));
+// document.querySelector(".dpad-up").addEventListener("mousedown", (e) => handleDpadPress(directions.up, true));
+// document.querySelector(".dpad-right").addEventListener("mousedown", (e) => handleDpadPress(directions.right, true));
+// document.querySelector(".dpad-down").addEventListener("mousedown", (e) => handleDpadPress(directions.down, true));
 
-document.querySelector(".dpad-left").addEventListener("mouseover", (e) => handleDpadPress(directions.left));
-document.querySelector(".dpad-up").addEventListener("mouseover", (e) => handleDpadPress(directions.up));
-document.querySelector(".dpad-right").addEventListener("mouseover", (e) => handleDpadPress(directions.right));
-document.querySelector(".dpad-down").addEventListener("mouseover", (e) => handleDpadPress(directions.down));
-
-
-
-
-
-
+// document.querySelector(".dpad-left").addEventListener("mouseover", (e) => handleDpadPress(directions.left));
+// document.querySelector(".dpad-up").addEventListener("mouseover", (e) => handleDpadPress(directions.up));
+// document.querySelector(".dpad-right").addEventListener("mouseover", (e) => handleDpadPress(directions.right));
+// document.querySelector(".dpad-down").addEventListener("mouseover", (e) => handleDpadPress(directions.down));

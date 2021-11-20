@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="logo.png" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css?ver=23">
     </head>
     <body>
         <div class="frame">
@@ -34,19 +34,21 @@
 
                             echo '<div class="place" 
                                     x='.$x.'
-                                    y='.$y.'>
-                                    <img src="'.$imgRPG.'">
-                                <div class="popover-content d-grid gap-2">
-                                    <h4>'.$title.'</h4>
-                                    <button class="btn btn-success btn-block" name="'.$i.'" onclick="showOff(this.name);">Khám phá</button>
-                                </div>    
-                            </div>';
+                                    y='.$y.'
+                                    title="'.$title.'"
+                                    id="'.$i.'">
+                                    <img src="'.$imgRPG.'"/>
+                                </div>';
                         }
                     ?>
-                    <div class="character" facing="down" walking="true">
-                        <div class="shadow pixel-art"></div>
+                    <div class="character" facing="down" walking="true" position>
+                        <div class="shadow pixel-art"></div>  
                         <div class="character_spritesheet pixel-art"></div>
                     </div>
+                    <div class="popover-content d-grid gap-2">
+                        <h4 id="destinationInfo"></h4>
+                        <button id="infoButton" class="btn btn-warning btn-block" name onclick="showOff(this.name);">Khám phá</button>
+                    </div> 
                     <div class="text">        
                         <svg class="corner" viewBox="0 0 65 62" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M35 3.5L65 6.5V62L0 0L35 3.5Z" fill="white"/>
@@ -57,7 +59,7 @@
         
 
         
-            <div class="dpad">
+            <!-- <div class="dpad">
                 <div class="DemoDirectionUI flex-center">
                         <button class="dpad-button dpad-left">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 13 13" shape-rendering="crispEdges">
@@ -104,7 +106,7 @@
                             </svg>
                         </button>
                     </div>
-            </div>
+            </div> -->
             
             
             <!-- <svg class="headline" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 75 14" shape-rendering="crispEdges">
@@ -160,8 +162,8 @@
             }
         ?>
 
-        <script src="script.js"></script>
-        <script src="text.js"></script>
+        <script src="script.js?ver=28"></script>
+        <script src="text.js?ver=1"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

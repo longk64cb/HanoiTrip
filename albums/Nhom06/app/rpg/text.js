@@ -9,10 +9,10 @@ var speeds = {
 };
 
 var textLines = [
-   { speed: speeds.normal, string: "Chào mừng bạn đến với" },
-   { speed: speeds.normal, string: "HanoiTrip", classes: ["green"] },
+   { speed: speeds.fast, string: "Chào mừng bạn đến với" },
+   { speed: speeds.fast, string: "HanoiTrip", classes: ["green"] },
    { speed: speeds.pause, string: "!", pause: true },
-   { speed: speeds.normal, string: "Nhấn vào các nút mũi tên để di chuyển đến công trình kiến trúc lịch sử Hà Nội bạn muốn khám phá." }
+   { speed: speeds.fast, string: "Điều khiển các nút mũi tên, WASD hoặc click chuột để di chuyển đến công trình kiến trúc lịch sử Hà Nội bạn muốn khám phá." }
 ];
 
 
@@ -57,6 +57,6 @@ setTimeout(() => {
 
 setTimeout(() => {
    container.style.visibility = "hidden";
-}, 12000)
+}, 10000)
 
 
