@@ -125,13 +125,13 @@
         <?php
             for($k=0;$k<sizeof($d['places']);$k++) {
                 echo '<div class = "showOff" style="z-index:10; position: fixed; top: 5vh; left: 10vw; display: none; width: 80vw; height: 90vh; background-color: white; margin: auto;">';
-                echo '<div class = "showOffHeader" style="position: relative; height: 10vh; background-color: #dedede">';
-                echo '<h1 style = "margin-left:20px; padding-top: 10px;">'.$d['places'][$k]['title'].'</h1>';
+                echo '<div class = "showOffHeader" style="position: relative; height: 10vh; background-color: #ff5252">';
+                echo '<h1 style = "margin-left:20px; padding-top: 10px; color: white">'.$d['places'][$k]['title'].'</h1>';
                 echo '<div class="closeShowOff" style="position: absolute; right: 20px; top: 20px;" onclick="closeShowOff()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                 <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
                 </svg></div></div>';
-                echo '<div class = "showOffContainer" style = "width: 80vw; height: 80vh; overflow-y: scroll;">';
+                echo '<div class = "showOffContainer" style = "width: 80vw; height: 80vh; overflow-y: scroll; background-color: #ededed">';
                 for($i=0;$i<sizeof($d['places'][$k]['items']);$i++){
                     $title = $d['places'][$k]['items'][$i]['title'];
                     $value = $d['places'][$k]['items'][$i]['value'];

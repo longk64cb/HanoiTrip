@@ -55,7 +55,7 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 		//items
 		if($ext=='GIF' || $ext=='JPEG'|| $ext=='JPG'|| $ext=='PNG'|| $ext=='TIF'|| $ext=='TIFF'){
 			$vobj .= '<center><img src="'.$url_full.'" style="max-width:90%;"></center>';
-			$html = '<div class="row"><div class="col-md-7 caption"><h3 class="title"><span>'.$title.'</span></h3><p>'.$desc.'</p></div><div class="col-md-5">'.$vobj.'</div></div>';
+			$html = '<div class="row"><div class="col-md-7 caption"><h3><span>'.$title.'</span></h3><p>'.$desc.'</p></div><div class="col-md-5">'.$vobj.'</div></div>';
 		}
 
 		// if($ext="HTML") {
@@ -66,7 +66,7 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 		if($ext=='TXT'){
 			$vobj .= file_get_contents('https://hcloud.trealet.com'.$url_full); //For embedded video
 			//$vobj = '<iframe src="'.$url_full.'"></iframe>';
-			$html = '<h1 class="title"><span>'.$title.'</span></h1><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
+			$html = '<h3><span>'.$title.'</span></h3><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
 		}
 		
 		//Youtube
@@ -75,7 +75,7 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 			$vobj .= '<div style="position: relative; width: 90%; height: 0; padding-bottom: 50%;">';
 			$vobj .= '<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/'.$vid.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 			$vobj .= '</div>';
-			$html = '<div class="row"><div class="col-md-5 caption"><h1 class="title"><span>'.$title.'</span></h1><p>'.$desc.'</p></div><div class="col-md-7">'.$vobj.'</div></div>';
+			$html = '<div class="row"><div class="col-md-5 caption"><h3><span>'.$title.'</span></h3><p>'.$desc.'</p></div><div class="col-md-7">'.$vobj.'</div></div>';
 		}
 		
 		//GLB for 3D
@@ -84,19 +84,19 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 			$vobj .= '<iframe src="https://hcloud.trealet.com/h3r/embed/?glb='.$url_full.'" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>';
 			$vobj .= '</div>';
 			$vobj = '<center>'.$vobj.'</center>';
-			$html = '<h1 class="title"><span>'.$title.'</span></h1><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
+			$html = '<h3 class="title"><span>'.$title.'</span></h3><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
 		}
 		
 		//Audio MP3
 		if($ext=='MP3'){
 			$vobj = '<audio controls><source src="'.$url_full.'" type="audio/mpeg">Your browser does not support the audio tag.</audio>';
-			$html = '<h1 class="title"><span>'.$title.'</span></h1><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
+			$html = '<h3 class="title"><span>'.$title.'</span></h3><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
 		}
 		
 		//Video MP4
 		if($ext=='MP4'){
 			$vobj = '<video width="90%" height="auto" controls><source src="'.$url_full.'" type="video/mp4">Your browser does not support the video tag.</video>';
-			$html = '<h1 class="title"><span>'.$title.'</span></h1><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
+			$html = '<h3 class="title"><span>'.$title.'</span></h3><center>'.$vobj.'</center><br><p>'.$desc.'</p>';
 		}
 		return $html;
 	}else if(isset($idata['input']) && isset($idata['input']['type'])){
