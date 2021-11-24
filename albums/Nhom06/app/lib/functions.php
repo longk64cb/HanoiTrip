@@ -55,7 +55,7 @@ function htmlItem($trealet_id,$nij,$idata, $css_item_id='', $css_input_id=''){
 		//items
 		if($ext=='GIF' || $ext=='JPEG'|| $ext=='JPG'|| $ext=='PNG'|| $ext=='TIF'|| $ext=='TIFF'){
 			$vobj .= '<center><img src="'.$url_full.'" style="max-width:90%;"></center>';
-			$html = '<div class="row"><div class="col-md-7 caption"><h1 class="title"><span>'.$title.'</span></h1><p>'.$desc.'</p></div><div class="col-md-5">'.$vobj.'</div></div>';
+			$html = '<div class="row"><div class="col-md-7 caption"><h3 class="title"><span>'.$title.'</span></h3><p>'.$desc.'</p></div><div class="col-md-5">'.$vobj.'</div></div>';
 		}
 
 		// if($ext="HTML") {
