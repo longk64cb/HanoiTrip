@@ -1,34 +1,149 @@
 var survey_options = document.getElementById('survey_options');
 var add_more_fields = document.getElementById('add_more_fields');
 var remove_fields = document.getElementById('remove_fields');
+var add_item = document.getElementsByClassName('add_more_items');
+var remove_item = document.getElementsByClassName('remove_items');
+var items = document.getElementsByClassName('items');
+var remove_place = document.getElementsByClassName('remove-place');
+
+// DROP AND DRAG FILE
+const initApp = () => {
+    const droparea = document.querySelector('.droparea');
+
+    const active = () => droparea.classList.add("green-border");
+
+    const inactive = () => droparea.classList.remove("green-border");
+
+    const prevents = (e) => e.preventDefault();
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evtName => {
+        droparea.addEventListener(evtName, prevents);
+    });
+
+    ['dragenter', 'dragover'].forEach(evtName => {
+        droparea.addEventListener(evtName, active);
+    });
+
+    ['dragleave', 'drop'].forEach(evtName => {
+        droparea.addEventListener(evtName, inactive);
+    });
+
+    droparea.addEventListener("drop", handleDrop);
+
+}
+
+document.addEventListener("DOMContentLoaded", initApp);
+
+const handleDrop = (e) => {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    const fileArray = [...files];
+    console.log(files); // FileList
+    console.log(fileArray);
+}
+
+//MỞ FILE
+function getFile(){
+	var fileReader = new FileReader()
+	
+}
 
 add_more_fields.onclick = function(){
-	var newField = document.createElement('input');
-	newField.setAttribute('type','text');
-	newField.setAttribute('name','survey_options[]');
-	// newField.setAttribute('class','survey_options');
-	newField.setAttribute('class','typeOfItem');
-	newField.setAttribute('siz',50);
-	newField.setAttribute('placeholder','Title');
-	survey_options.appendChild(newField);
+    var i = document.getElementsByClassName('title').length;
+	// var newField = document.createElement('input');
+	// newField.setAttribute('type','text');
+	// newField.setAttribute('name','survey_options[]');
+	// newField.setAttribute('class','title');
+	// newField.setAttribute('siz',50);
+	// newField.setAttribute('placeholder','Tên địa điểm'); 
+	// survey_options.appendChild(newField);
 
-	var newField2 = document.createElement('input');
-	newField2.setAttribute('type','text');
-	newField2.setAttribute('name','survey_options[]');
-	// newField2.setAttribute('class','survey_options');
-	newField2.setAttribute('class','ID');
-	newField2.setAttribute('siz',50);
-	newField2.setAttribute('placeholder','ID (Nếu item gồm nhiều ID, ngăn cách các ID giữa các dấu phẩy)');
-	survey_options.appendChild(newField2);
-	var node = document.createElement("HR"); 
-	survey_options.appendChild(node);
+	// var newPlace = document.createElement("button");
+	// newPlace.setAttribute('type', 'button');
+	// newPlace.setAttribute('id', `btn${i}`);
+  //   newPlace.setAttribute('class', "btn btn-primary");
+  //   newPlace.setAttribute("data-bs-toggle", "modal");
+  //   newPlace.setAttribute("data-bs-target", `#modal${i}`);
+	// newPlace.innerHTML = "Click me";
+	// survey_options.appendChild(newPlace)
+	// var node = document.createElement("HR"); 
+	// survey_options.appendChild(node);
+
+  survey_options.insertAdjacentHTML("beforeend", `
+    <div class="place-form">
+      <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" />
+      <button type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}">Chỉnh sửa</button>
+      <button type="button" class="btn btn-danger remove-place">Xóa địa điểm</button>
+      <hr/>
+    </div>
+  `);
+  remove_place = document.getElementsByClassName(`remove-place`);
+  var place_form = document.getElementsByClassName(`place-form`);
+  for (let j = 0; j < remove_place.length; j++) {
+    remove_place[j].onclick = function() {
+      // console.log("hello")
+      place_form[j].remove();
+    }
+  }
+
+    var modal = document.createElement("div");
+    modal.setAttribute('class', "modal fade")
+    modal.setAttribute('id', `modal${i}`);
+    modal.setAttribute('tabindex', "-1");
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = `<div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">${document.getElementsByClassName('title')[i].value}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text"  id="title"  size="50" placeholder="Tiêu đề">
+        <input type="text"  id="desc"  size="50" placeholder="Mô tả">
+        <div class="items">
+        
+        </div>
+        <div class="controls">
+          <button  type="button" class="btn btn-success add_more_items"><i class="fa fa-plus"></i>Thêm item</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>`;
+    document.body.appendChild(modal);
+    items = document.getElementsByClassName('items');
+    add_item = document.getElementsByClassName('add_more_items');
+    // console.log(add_item)
+    for (let i = 0; i < add_item.length; i++) {
+      add_item[i].onclick = function() {
+        items = document.getElementsByClassName('items');
+        items[i].insertAdjacentHTML("beforeend", `
+          <div class="item-form-${i}">
+          <input type="text" class="typeOfItem" siz="50" placeholder="Tilte"/>
+          <input type="text" class="ID" siz="50" placeholder="ID (Nếu item gồm nhiều ID, ngăn cách các ID giữa các dấu phẩy)"/>
+          <button type="button" class="btn btn-danger remove_items${i}"><i class="fa fa-plus"></i>Xóa item</button>
+          <hr/>
+          </div>`);
+        remove_item = document.getElementsByClassName(`remove_items${i}`);
+        var item_form = document.getElementsByClassName(`item-form-${i}`);
+        for (let j = 0; j < remove_item.length; j++) {
+          remove_item[j].onclick = function() {
+            item_form[j].remove();
+          }
+        }
+      }
+    }
 }
 
 remove_fields.onclick = function(){
 	var input_tags = survey_options.getElementsByTagName('input');
-	if(input_tags.length > 2) {
-		survey_options.removeChild(input_tags[(input_tags.length) - 1]);
+	var l = input_tags.length;
+	if(l > 2) {
+		survey_options.removeChild(input_tags[l-1])
 	}
+	
 }
 
 function getData() {
@@ -38,11 +153,6 @@ function getData() {
 	var desc = document.getElementById("desc").value;	
 
 	var item = [];
-
-	console.log(type);
-
-	
-	alert(type);
 	
     alert("Xác nhận tải xuống?");
     var trealet = "";
@@ -52,10 +162,10 @@ function getData() {
         trealetHeader = '{\n'
                         + "\t\"trealet\":{\n"
                         + "\t\t\"exec\":\"streamline\",\n" 
-                        + "\t\t\"title\":" + '\"' + title + "\",\n"
-                        + "\t\t\"author\":\"Nhom06\",\n"
-                        + "\t\t\"desc\":" + '\"' + desc + "\",\n"
-                        + "\t\t\"items\": [\n";
+                        + "\t\t\"title\":" + '\"' + "Hanoi Trip" + "\",\n"
+                        + "\t\t\"imgFront: 18690\""
+                        + "\t\t\"desc\":" + '\"' + "Tìm hiểu về công trình kiến trúc lịch sử Hà Nội" + "\",\n"
+                        + "\t\t\"places\": [\n";
 		trealetItem = "";
 		for (let i = 0; i < type.length; i++) {
 			if (i == type.length - 1)
@@ -75,6 +185,7 @@ function getData() {
     download('newFile.trealet', trealet);
 }
 
+// DOWNLOAD FILE TREALET MOI
 function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -87,3 +198,4 @@ function download(filename, text) {
   
     document.body.removeChild(element);
   }
+

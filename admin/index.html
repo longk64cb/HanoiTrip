@@ -4,6 +4,7 @@
   <title>Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -11,21 +12,42 @@
 
   <h1>Update thông tin</h1>
   <form action="" name="form1">
-    <div class="wrapper">
-        <div id="survey_options">
-          <input type="text" name="survey_options[]" id="title" class="survey_options" size="50" placeholder="Tiêu đề">
-          <input type="text" name="survey_options[]" id="desc" class="survey_options" size="50" placeholder="Mô tả">
-          <!-- <input type="text" name="survey_options[]" class="survey_options" size="50" placeholder="Loại item">
-          <input type="text" name="survey_options[]" class="survey_options" size="50" placeholder="ID"> -->
-        </div>
-        <div class="controls">
-          <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Thêm item</a>
-          <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Xóa item</a>
-        </div>
-        <button class="btn btn-primary" onclick="getData()">Xác nhận</button>
+    <div class="main">
+      <section class="droparea">
+        <i class="far fa-images"></i>
+        <p>Drop your trealet files here!</p>
+      </section>
+
+      <div id="survey_options">
+        <!-- <input type="text" name="survey_options[]" id="title" class="survey_options" size="50" placeholder="Tên đối tượng">
+        <input type="text" name="survey_options[]" id="desc" class="survey_options" size="50" placeholder="Mô tả"> -->
+        <!-- <input type="text" name="survey_options[]" class="survey_options" size="50" placeholder="Loại item">
+        <input type="text" name="survey_options[]" class="survey_options" size="50" placeholder="ID"> -->
       </div>
+        
+      <div class="controls">
+        <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Thêm địa điểm</a>
+        <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Xóa địa điểm</a>
+      </div>
+
+      <button id="confirm" class="btn btn-primary" onclick="getData()">Xác nhận</button>
+
+    </div>
   </form>
   
-<script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <!-- <script>
+    $(document).ready(function() {
+      for (let i = 0; i < $(".title").length; i++) {
+        $(`#btn${i}`).click(function() {
+          console.log(i);
+          $(`#${i}`).show();
+        })
+      }
+    })
+  </script> -->
 </body>
 </html>
