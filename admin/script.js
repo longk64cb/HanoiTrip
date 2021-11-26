@@ -72,7 +72,7 @@ add_more_fields.onclick = function(){
   survey_options.insertAdjacentHTML("beforeend", `
     <div class="place-form">
       <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" />
-      <button type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}">Chỉnh sửa</button>
+      <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}">Chỉnh sửa</button>
       <button type="button" class="btn btn-danger remove-place">Xóa địa điểm</button>
       <hr/>
     </div>
@@ -86,6 +86,7 @@ add_more_fields.onclick = function(){
     }
   }
 
+  console.log(document.getElementsByClassName('title')[i].value);
     var modal = document.createElement("div");
     modal.setAttribute('class', "modal fade")
     modal.setAttribute('id', `modal${i}`);
@@ -135,6 +136,11 @@ add_more_fields.onclick = function(){
         }
       }
     }
+}
+
+function modalTitle(i) {
+  var title = document.getElementsByClassName('title')[i].value;
+  document.getElementsByClassName("modal-title")[i].innerHTML = title;
 }
 
 remove_fields.onclick = function(){
