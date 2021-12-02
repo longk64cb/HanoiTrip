@@ -67,8 +67,8 @@ function buildFromFile() {
     places.insertAdjacentHTML("beforeend", `
       <div class="place-form">
         <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" value="${initPlaces[i].title}"/>
-        <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i>Chỉnh sửa</button>
-        <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i>Xóa địa điểm</button>
+        <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i> Chỉnh sửa</button>
+        <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa địa điểm</button>
         <hr/>
       </div>
     `);
@@ -91,7 +91,7 @@ function buildFromFile() {
               </div>
             </div>
             <div class="modal-footer">
-              <button  type="button" class="btn btn-success add_more_items${i}"><i class="fa fa-plus"></i>Thêm item</button>  
+              <button  type="button" class="btn btn-success add_more_items${i}"><i class="fa fa-plus"></i> Thêm item</button>  
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
             </div>
           </div>
@@ -104,7 +104,7 @@ function buildFromFile() {
         <div class="item-form-${i}">
         <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
         <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
-        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i>Xóa item</button>
+        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i> Xóa item</button>
         <hr/>
         </div>`);
     }
@@ -114,7 +114,7 @@ function buildFromFile() {
         <div class="item-form-${i}">
         <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte" value="${initPlaces[i].items[j].title}"/>
         <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)" value="${initPlaces[i].items[j].value}"/>
-        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i>Xóa item</button>
+        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i> Xóa item</button>
         <hr/>
         </div>`);
     }
@@ -132,8 +132,8 @@ add_more_fields.onclick = function(){
   places.insertAdjacentHTML("beforeend", `
     <div class="place-form">
       <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" />
-      <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i>Chỉnh sửa</button>
-      <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i>Xóa địa điểm</button>
+      <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i> Chỉnh sửa</button>
+      <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa địa điểm</button>
       <hr/>
     </div>
   `);
@@ -164,7 +164,7 @@ add_more_fields.onclick = function(){
             </div>
           </div>
           <div class="modal-footer">
-            <button  type="button" class="btn btn-success add_more_items${i}"><i class="fa fa-plus"></i>Thêm item</button>  
+            <button  type="button" class="btn btn-success add_more_items${i}"><i class="fa fa-plus"></i> Thêm item</button>  
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
           </div>
         </div>
@@ -177,7 +177,7 @@ add_more_fields.onclick = function(){
       <div class="item-form-${i}">
       <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
       <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
-      <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i>Xóa item</button>
+      <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i> Xóa item</button>
       <hr/>
       </div>`);
   }

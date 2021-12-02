@@ -155,12 +155,12 @@
                         echo '<div class="next" onclick="next('.$k.')">&gt;</div>';
                         echo '</div>';
                     }
-                    else if(is_string($value)) {
-                        echo '<div class="content container-fluid" style="margin-top: 60px;"><h3 class="title"><span>'.$title.'</span></h3>';
-                        echo '<div style="text-align: center;">';
-                        echo $value;
-                        echo '</div></div>';
-                    }
+                    // else if(is_string($value)) {
+                    //     echo '<div class="content container-fluid" style="margin-top: 60px;"><h3 class="title"><span>'.$title.'</span></h3>';
+                    //     echo '<div style="text-align: center;">';
+                    //     echo $value;
+                    //     echo '</div></div>';
+                    // }
                     else {
                         $idata 	= fetchItemData($value);
                         echo '<div class="content container" style="margin-top: 40px;">';
