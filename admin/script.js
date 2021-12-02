@@ -6,7 +6,10 @@ var remove_item = document.getElementsByClassName('remove_items');
 var items = document.getElementsByClassName('items');
 var remove_place = document.getElementsByClassName('remove-place');
 var places = document.getElementsByClassName("place")[0];
+var loadButton = document.getElementById("load-file-button");
+var fileInput = document.getElementById("file-load");
 
+var initTrealet = {};
 var imgRPG = [];
 var place_map = [];
 
@@ -35,46 +38,87 @@ var item = {
   "title": "",
   "value": null
 }
-// DROP AND DRAG FILE
-const initApp = () => {
-    const droparea = document.querySelector('.droparea');
 
-    const active = () => droparea.classList.add("green-border");
-
-    const inactive = () => droparea.classList.remove("green-border");
-
-    const prevents = (e) => e.preventDefault();
-
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evtName => {
-        droparea.addEventListener(evtName, prevents);
-    });
-
-    ['dragenter', 'dragover'].forEach(evtName => {
-        droparea.addEventListener(evtName, active);
-    });
-
-    ['dragleave', 'drop'].forEach(evtName => {
-        droparea.addEventListener(evtName, inactive);
-    });
-
-    droparea.addEventListener("drop", handleDrop);
-
+loadButton.onclick = function() {
+  const reader = new FileReader();
+  reader.onload = function(fileLoadedEvent){
+    var fileContent = JSON.parse(reader.result);
+    console.log(fileContent);
+    initTrealet = fileContent;
+    buildFromFile();
+  };
+  reader.readAsText(fileInput.files[0]);
 }
 
-document.addEventListener("DOMContentLoaded", initApp);
+function buildFromFile() {
+  removeAllChildNodes(places);
+  $('.modal').remove();
 
-const handleDrop = (e) => {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    const fileArray = [...files];
-    console.log(files); // FileList
-    console.log(fileArray);
+  document.getElementById("title").value = initTrealet.trealet.title;
+  document.getElementById("desc").value = initTrealet.trealet.desc;
+  document.getElementById("imgFront").value = initTrealet.trealet.imgFront;
+  var initPlaces = initTrealet.trealet.places;
+  for (let i = 0; i < initPlaces.length; i++) {
+    places.insertAdjacentHTML("beforeend", `
+      <div class="place-form">
+        <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" value="${initPlaces[i].title}"/>
+        <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i>Chỉnh sửa</button>
+        <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i>Xóa địa điểm</button>
+        <hr/>
+      </div>
+    `);
+    var modal = document.createElement("div");
+    modal.setAttribute('class', "modal fade")
+    modal.setAttribute('id', `modal${i}`);
+    modal.setAttribute('tabindex', "-1");
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = `<div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input class="imgRPG form-control" placeholder="imgRPG" value="${initPlaces[i].imgRPG}">
+              <textarea class="desc-place form-control" rows="5" placeholder="Mô tả">${initPlaces[i].desc}</textarea>
+              <div class="items items${i}">
+              
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button  type="button" class="btn btn-success add_more_items${i}"><i class="fa fa-plus"></i>Thêm item</button>  
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+            </div>
+          </div>
+        </div>`;
+    document.body.appendChild(modal);
+    add_item = document.getElementsByClassName(`add_more_items${i}`)[0];
+    add_item.onclick = function() {
+      items = document.getElementsByClassName(`items${i}`)[0];
+      items.insertAdjacentHTML("beforeend", `
+        <div class="item-form-${i}">
+        <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
+        <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
+        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i>Xóa item</button>
+        <hr/>
+        </div>`);
+    }
+    for (let j = 0; j < initPlaces[i].items.length; j++) {
+      items = document.getElementsByClassName(`items${i}`)[0];
+      items.insertAdjacentHTML("beforeend", `
+        <div class="item-form-${i}">
+        <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte" value="${initPlaces[i].items[j].title}"/>
+        <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)" value="${initPlaces[i].items[j].value}"/>
+        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i>Xóa item</button>
+        <hr/>
+        </div>`);
+    }
+  }
 }
 
-//MỞ FILE
-function getFile(){
-	var fileReader = new FileReader()
-	
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
 }
 
 add_more_fields.onclick = function(){
@@ -83,67 +127,62 @@ add_more_fields.onclick = function(){
     <div class="place-form">
       <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" />
       <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i>Chỉnh sửa</button>
-      <button type="button" class="btn btn-danger remove-place"><i class="bi bi-trash"></i>Xóa địa điểm</button>
+      <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i>Xóa địa điểm</button>
       <hr/>
     </div>
   `);
-  remove_place = document.getElementsByClassName(`remove-place`);
-  var place_form = document.getElementsByClassName(`place-form`);
-  var length = remove_place.length;
-  for (let j = 0; j < length; j++) {
-    remove_place[j].onclick = function() {
-      console.log(length);
-      this.parentNode.remove();
-      return;
-    }
-  }
-
-    var modal = document.createElement("div");
-    modal.setAttribute('class', "modal fade")
-    modal.setAttribute('id', `modal${i}`);
-    modal.setAttribute('tabindex', "-1");
-    modal.setAttribute("aria-hidden", "true");
-    modal.innerHTML = `<div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">${document.getElementsByClassName('title')[i].value}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input class="imgRPG form-control" placeholder="imgRPG">
-        <textarea class="desc-place form-control" rows="5" placeholder="Mô tả"></textarea>
-        <div class="items">
-        
+  // remove_place = document.getElementsByClassName(`remove-place`);
+  // var place_form = document.getElementsByClassName(`place-form`);
+  // var length = remove_place.length;
+  // for (let j = 0; j < length; j++) {
+  //   remove_place[j].onclick = function() {
+  //     removeParent(this);
+  //   }
+  // }
+  var modal = document.createElement("div");
+  modal.setAttribute('class', "modal fade")
+  modal.setAttribute('id', `modal${i}`);
+  modal.setAttribute('tabindex', "-1");
+  modal.setAttribute("aria-hidden", "true");
+  modal.innerHTML = `<div class="modal-dialog"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input class="imgRPG form-control" placeholder="imgRPG">
+            <textarea class="desc-place form-control" rows="5" placeholder="Mô tả"></textarea>
+            <div class="items${i} items">
+            
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button  type="button" class="btn btn-success add_more_items${i}"><i class="fa fa-plus"></i>Thêm item</button>  
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button  type="button" class="btn btn-success add_more_items"><i class="fa fa-plus"></i>Thêm item</button>  
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
-      </div>
-    </div>
-  </div>`;
-    document.body.appendChild(modal);
-    items = document.getElementsByClassName('items');
-    add_item = document.getElementsByClassName('add_more_items');
-    // console.log(add_item)
-    for (let i = 0; i < add_item.length; i++) {
-      add_item[i].onclick = function() {
-        items = document.getElementsByClassName('items');
-        items[i].insertAdjacentHTML("beforeend", `
-          <div class="item-form-${i}">
-          <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
-          <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
-          <button type="button" class="btn btn-danger remove_items${i}"><i class="bi bi-trash"></i></i>Xóa item</button>
-          <hr/>
-          </div>`);
-        remove_item = document.getElementsByClassName(`remove_items${i}`);
-        var item_form = document.getElementsByClassName(`item-form-${i}`);
-        for (let j = 0; j < remove_item.length; j++) {
-          remove_item[j].onclick = function() {
-            this.parentNode.remove();
-          }
-        }
-      }
-    }
+      </div>`;
+  document.body.appendChild(modal);
+  add_item = document.getElementsByClassName(`add_more_items${i}`)[0];
+  add_item.onclick = function() {
+    items = document.getElementsByClassName(`items${i}`)[0];
+    items.insertAdjacentHTML("beforeend", `
+      <div class="item-form-${i}">
+      <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
+      <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
+      <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i>Xóa item</button>
+      <hr/>
+      </div>`);
+  }
+}
+
+const removeParent = function(button) {
+  button.parentNode.remove();
+  // console.log("h")
+}
+
+const removeModal = function(i) {
+  document.getElementById(`modal${i}`).remove();
 }
 
 function modalTitle(i) {
@@ -183,11 +222,12 @@ function getData() {
     for (let j = 0; j < typeOfItem.length; j++) {
       item.title = typeOfItem[j].value;
       if (id[j].value.includes(',')) {
-        item.value = "[" + id[j].value + "]";
+        var arrayItem = id[j].value.split(",");
+        item.value = arrayItem;
       } else {
         item.value = id[j].value;
       }
-      const trealet_item = Object.assign({}, place);
+      const trealet_item = Object.assign({}, item);
       place.items.push(trealet_item);
     }
     // console.log(place)
@@ -199,6 +239,7 @@ function getData() {
   console.log(JSON.stringify(trealet));
   place_map = trealet.trealet.places;
   loadImgUrl();
+  drawPlace();
 }
 
 function loadImgUrl() {
