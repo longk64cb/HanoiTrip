@@ -61,7 +61,6 @@ body {
 
 .map {
    image-rendering: pixelated;
-   background-image: url("map.png?ver=101");
    background-repeat: no-repeat;
    background-size: 100%;
    width: calc(25 * var(--grid-cell));
@@ -90,7 +89,7 @@ button {
    justify-content: center;
    align-items: center;
    /* background-color: #fff59d; */
-   border: solid #41c161;
+   /* border: solid #41c161; */
 }
 
 .place:hover {
