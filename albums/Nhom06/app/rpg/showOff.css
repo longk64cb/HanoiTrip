@@ -1,3 +1,38 @@
+@font-face {
+    font-family: Pixel;
+    src: url("SVN-Determination Sans.otf") format("opentype");
+}
+
+body {
+    font-family: Pixel;
+}
+
+.showOff {
+    z-index:10;
+    position: fixed;
+    top: 5vh;
+    left: 10vw;
+    display: none;
+    width: 80vw;
+    height: 90vh;
+    background-image: url('showOff_background.png');
+    background-size: 80vw 90vh;
+    margin: auto;
+}
+
+.showOffHeader {
+    position: relative; 
+    height: 10vh;
+    /* background-color: #ff5252; */
+}
+
+.showOffContainer {
+    width: 76vw; height: 76vh;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+
 .slider {
    width: 980px;
    margin: auto;
