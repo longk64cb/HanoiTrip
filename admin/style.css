@@ -245,13 +245,12 @@ label {
     overflow: hidden;
   }
 
-  .modal-dialog {
-    height: 640px;
+  .modal {
     overflow: hidden;
   }
 
   .items {
-    max-height: 300px;
+    height: 290px;
     overflow-y: auto;
   }
 

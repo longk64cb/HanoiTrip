@@ -21,7 +21,7 @@ var trealet = {
     "desc": "",
     "places": [],
     "map": "",
-    "map_canvas": null
+    "map_canvas": {}
   }
 }
 
@@ -40,20 +40,25 @@ var item = {
 }
 
 loadButton.onclick = function() {
-  const reader = new FileReader();
-  reader.onload = function(fileLoadedEvent){
-    var fileContent = JSON.parse(reader.result);
-    console.log(fileContent);
-    initTrealet = fileContent;
-    buildFromFile();
-  };
-  reader.readAsText(fileInput.files[0]);
+  if (fileInput.files[0].name.split(".")[1] != "trealet") {
+    alert("Yêu cầu upload file trealet!");
+  } else {
+    const reader = new FileReader();
+    reader.onload = function(fileLoadedEvent){
+      var fileContent = JSON.parse(reader.result);
+      console.log(fileContent);
+      initTrealet = fileContent;
+      buildFromFile();
+    };
+    reader.readAsText(fileInput.files[0]);
+  }
 }
 
 function buildFromFile() {
   removeAllChildNodes(places);
   $('.modal').remove();
 
+  layers = initTrealet.trealet.map_canvas;
   document.getElementById("title").value = initTrealet.trealet.title;
   document.getElementById("desc").value = initTrealet.trealet.desc;
   document.getElementById("imgFront").value = initTrealet.trealet.imgFront;
@@ -79,7 +84,8 @@ function buildFromFile() {
             </div>
             <div class="modal-body">
               <input class="imgRPG form-control" placeholder="imgRPG" value="${initPlaces[i].imgRPG}">
-              <textarea class="desc-place form-control" rows="5" placeholder="Mô tả">${initPlaces[i].desc}</textarea>
+              <textarea class="desc-place form-control" rows="4" placeholder="Mô tả">${initPlaces[i].desc}</textarea>
+              <hr>
               <div class="items items${i}">
               
               </div>
@@ -151,7 +157,8 @@ add_more_fields.onclick = function(){
           </div>
           <div class="modal-body">
             <input class="imgRPG form-control" placeholder="imgRPG">
-            <textarea class="desc-place form-control" rows="5" placeholder="Mô tả"></textarea>
+            <textarea class="desc-place form-control" rows="4" placeholder="Mô tả"></textarea>
+            <hr>
             <div class="items${i} items">
             
             </div>
