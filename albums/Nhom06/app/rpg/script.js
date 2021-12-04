@@ -7,11 +7,10 @@ var destinationInfo = document.getElementById("destinationInfo");
 var infoButton = document.getElementById("infoButton");
 // var shadow = document.querySelector(".shadow");
 
-//start in the middle of the map
 var x = 185;
 var y = 56;
-var held_directions = []; //State of which arrow keys we are holding down
-var speed = 1; //How fast the character moves in pixels per frame
+var held_directions = [];
+var speed = 1;
 var destination = {
    x: x,
    y: y
@@ -24,11 +23,10 @@ var pixelSize = parseInt(
 var gridCell = pixelSize * 16;
 
 map.onclick = function clickEvent(e) {
-   // e = Mouse click event.
    var rect = e.currentTarget.getBoundingClientRect();
-   var xDes = e.clientX - rect.left; //x position within the element.
+   var xDes = e.clientX - rect.left;
    destination.x = Math.round(xDes / pixelSize -16);
-   var yDes = e.clientY - rect.top;  //y position within the element.
+   var yDes = e.clientY - rect.top;
    destination.y = Math.round(yDes / pixelSize -28);
    console.log("Left? : " + destination.x + " ; Top? : " + destination.y + ".");
       console.log("Left? : " + x + " ; Top? : " + y + ".");
@@ -43,12 +41,9 @@ const placeCharacter = () => {
       if (held_direction === directions.down) {y += speed;}
       if (held_direction === directions.up) {y -= speed;}
       character.setAttribute("facing", held_direction);
-      // console.log(x);
-      // console.log(y);
    }
    character.setAttribute("walking", held_direction ? "true" : "false");
    
-   //Limits (gives the illusion of walls)
    var leftLimit = -8;
    var rightLimit = (16 * 23)+8;
    var topLimit = -8 + 32;
@@ -89,7 +84,6 @@ const placeCharacter = () => {
        } else {
            place.classList.remove("placeHover");
            if (character.getAttribute("position") == title) {
-               //   console.log("Dính");
             character.classList.remove("characterHover");
            }
        }
@@ -127,7 +121,6 @@ const destinationMove = () => {
 }
 
 
-//Set up the game loop
 const step = () => {
    destinationMove();
    placeCharacter();
@@ -135,11 +128,8 @@ const step = () => {
       step();
    })
 }
-step(); //kick off the first step!
+step();
 
-
-
-/* Direction key state */
 const directions = {
    up: "up",
    down: "down",
@@ -170,48 +160,3 @@ document.addEventListener("keyup", (e) => {
       held_directions.splice(index, 1)
    }
 });
-
-
-/* BONUS! Dpad functionality for mouse and touch */
-// var isPressed = false;
-// const removePressedAll = () => {
-//    document.querySelectorAll(".dpad-button").forEach(d => {
-//       d.classList.remove("pressed")
-//    })
-// }
-// document.body.addEventListener("mousedown", () => {
-//    console.log('mouse is down')
-//    isPressed = true;
-// })
-// document.body.addEventListener("mouseup", () => {
-//    console.log('mouse is up')
-//    isPressed = false;
-//    held_directions = [];
-//    removePressedAll();
-// })
-// const handleDpadPress = (direction, click) => {   
-//    if (click) {
-//       isPressed = true;
-//    }
-//    held_directions = (isPressed) ? [direction] : []
-   
-//    if (isPressed) {
-//       removePressedAll();
-//       document.querySelector(".dpad-"+direction).classList.add("pressed");
-//    }
-// }
-// //Bind a ton of events for the dpad
-// document.querySelector(".dpad-left").addEventListener("touchstart", (e) => handleDpadPress(directions.left, true));
-// document.querySelector(".dpad-up").addEventListener("touchstart", (e) => handleDpadPress(directions.up, true));
-// document.querySelector(".dpad-right").addEventListener("touchstart", (e) => handleDpadPress(directions.right, true));
-// document.querySelector(".dpad-down").addEventListener("touchstart", (e) => handleDpadPress(directions.down, true));
-
-// document.querySelector(".dpad-left").addEventListener("mousedown", (e) => handleDpadPress(directions.left, true));
-// document.querySelector(".dpad-up").addEventListener("mousedown", (e) => handleDpadPress(directions.up, true));
-// document.querySelector(".dpad-right").addEventListener("mousedown", (e) => handleDpadPress(directions.right, true));
-// document.querySelector(".dpad-down").addEventListener("mousedown", (e) => handleDpadPress(directions.down, true));
-
-// document.querySelector(".dpad-left").addEventListener("mouseover", (e) => handleDpadPress(directions.left));
-// document.querySelector(".dpad-up").addEventListener("mouseover", (e) => handleDpadPress(directions.up));
-// document.querySelector(".dpad-right").addEventListener("mouseover", (e) => handleDpadPress(directions.right));
-// document.querySelector(".dpad-down").addEventListener("mouseover", (e) => handleDpadPress(directions.down));

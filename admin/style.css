@@ -132,7 +132,7 @@ label {
     text-transform: uppercase;
     /* margin-bottom: 0.5em; */
     font-weight: bold;
-    display: block;
+    /* display: block; */
 }
 
 .main {
@@ -151,9 +151,10 @@ label {
     overflow-y: auto;
 }
   
-  input {
+  input, textarea {
     padding: 10px;
-    margin: 10px auto;
+    /* margin: 5px auto; */
+    margin-bottom: 5px;
     display: block;
     border-radius: 5px;
     border: 1px solid lightgrey;
@@ -161,17 +162,9 @@ label {
     color: black;
   }
   
-  .title {
-    width: 500px;
-  }
-  
-  input[type="text"]:focus {
+  /* input[type="text"]:focus {
     outline: none;
-  }
-  
-  #desc {
-      height: 200px;
-  }
+  } */
   
   .controls {
     width: 294px;
@@ -249,8 +242,12 @@ label {
     overflow: hidden;
   }
 
+  .modal-title {
+    font-weight: bold;
+  }
+
   .items {
-    height: 290px;
+    height: 270px;
     overflow-y: auto;
   }
 
@@ -259,7 +256,7 @@ label {
   }
 
   #load-file-button {
-    margin: 10px auto;
+    margin-bottom: 5px;
   }
 
   h1 {

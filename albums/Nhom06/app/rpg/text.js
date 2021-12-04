@@ -1,7 +1,7 @@
 var container = document.querySelector(".text");
 
 var speeds = {
-   pause: 500, //Higher number = longer delay
+   pause: 500,
    slow: 120,
    normal: 70,
    fast: 40,
@@ -19,7 +19,7 @@ var textLines = [
 var characters = [];
 textLines.forEach((line, index) => {
    if (index < textLines.length - 1) {
-      line.string += " "; //Add a space between lines
+      line.string += " ";
    }
 
    line.string.split("").forEach((character) => {
@@ -50,7 +50,6 @@ function revealOneCharacter(list) {
    }
 }
 
-//Kick it off
 setTimeout(() => {
    revealOneCharacter(characters);   
 }, 600)

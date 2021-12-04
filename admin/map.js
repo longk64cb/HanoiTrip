@@ -11,12 +11,12 @@ var gridCell = pixelSize * 10;
 
 const ctx = canvas.getContext('2d');
 
-const image = new Image(32* 25, 32*27); // Using optional size for image
-image.onload = drawImageActualSize; // Draw when image has loaded
+const image = new Image(32* 25, 32*27);
+image.onload = drawImageActualSize;
 
 image.src = 'map.png';
 
-var selection = [0, 0]; //Which tile we will paint from the menu
+var selection = [0, 0];
 
 var isMouseDown = false;
 var currentLayer = 0;
@@ -65,7 +65,6 @@ function getCoords(e) {
 }
 
 function exportImage() {
-   // ctx.clearRect(0, 0, canvas.width, canvas.height);
    draw();
    var data = canvas.toDataURL();
    var image = new Image();
@@ -79,7 +78,6 @@ function exportImage() {
 
 function clearCanvas() {
    layers = {};
-   // ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.drawImage(image, 0, 0, image.width, image.height);
    draw();
    drawPlace();
@@ -119,7 +117,6 @@ function back() {
 function drawPlace() {
    imgRPG.forEach(img => {
       ctx.drawImage(img.img, img.x * 32, img.y * 32, img.img.width, img.img.height);
-      // console.log(img.width);
    })
 }
 
@@ -129,7 +126,6 @@ function drawImageActualSize() {
    ctx.imageSmoothingEnabled = false;
    draw();
    drawPlace();
-   // setLayer(0);
  }
 tilesetImage.src = "https://assets.codepen.io/21542/TileEditorSpritesheet.2x_2.png";
 

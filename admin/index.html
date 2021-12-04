@@ -14,8 +14,8 @@
     <div class="card main">
       <h1>Khởi tạo Trealet</h1>
       <label class="form-label" for="file-load">Load file trealet có sẵn</label>
-      <div class="mt-50 input-group">
-        <input type="file" accept=".trealet" class="form-control form-control-lg" id="file-load" aria-describedby="load-file-button" placeholder="Load file trealet có sẵn">
+      <div class="input-group">
+        <input type="file" accept=".trealet" class="form-control " id="file-load" aria-describedby="load-file-button" placeholder="Load file trealet có sẵn">
         <button type="button" class="btn btn-success" id="load-file-button">Load file</button> 
       </div>
       <!-- <section class="droparea">
@@ -24,9 +24,12 @@
       </section> -->
   
       <div id="survey_options">
-        <input type="text" name="survey_options[]" id="title" class="survey_options form-control-lg form-control" placeholder="Tên đối tượng">
-        <textarea name="survey_options[]" id="desc" class="survey_options form-control-lg form-control" rows="4" placeholder="Mô tả"></textarea>
-        <input type="text" name="survey_options[]" id="imgFront" class="survey_options form-control-lg form-control" placeholder="Background">
+        <label>Tiêu đề</label>
+        <input type="text" name="survey_options[]" id="title" class="survey_options  form-control" placeholder="">
+        <label>Mô tả</label>
+        <textarea name="survey_options[]" id="desc" class="survey_options form-control" rows="5"></textarea>
+        <label>Background</label>
+        <input type="text" name="survey_options[]" id="imgFront" class="survey_options  form-control" placeholder="">
       </div>
       <button type="button" id="confirm" class="btn btn-primary" onclick="getData()">Tiếp theo<i class="bi bi-chevron-right"></i></button>
     </div>

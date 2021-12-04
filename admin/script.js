@@ -66,7 +66,7 @@ function buildFromFile() {
   for (let i = 0; i < initPlaces.length; i++) {
     places.insertAdjacentHTML("beforeend", `
       <div class="place-form">
-        <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" value="${initPlaces[i].title}"/>
+        <input type="text" name="survey_options[]" class="title form-control" placeholder="Tên địa điểm" value="${initPlaces[i].title}"/>
         <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i> Chỉnh sửa</button>
         <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa địa điểm</button>
         <hr/>
@@ -83,8 +83,10 @@ function buildFromFile() {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <input class="imgRPG form-control" placeholder="imgRPG" value="${initPlaces[i].imgRPG}">
-              <textarea class="desc-place form-control" rows="4" placeholder="Mô tả">${initPlaces[i].desc}</textarea>
+              <label>imgRPG (Ảnh hiện lên map)</label>
+              <input class="imgRPG form-control" placeholder="" value="${initPlaces[i].imgRPG}">
+              <label>Mô tả</label>
+              <textarea class="desc-place form-control" rows="4" placeholder="">${initPlaces[i].desc}</textarea>
               <hr>
               <div class="items items${i}">
               
@@ -102,9 +104,11 @@ function buildFromFile() {
       items = document.getElementsByClassName(`items${i}`)[0];
       items.insertAdjacentHTML("beforeend", `
         <div class="item-form-${i}">
+        <label>Title</label>
         <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
+        <label>ID</label>
         <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
-        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i> Xóa item</button>
+        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i></button>
         <hr/>
         </div>`);
     }
@@ -112,9 +116,11 @@ function buildFromFile() {
       items = document.getElementsByClassName(`items${i}`)[0];
       items.insertAdjacentHTML("beforeend", `
         <div class="item-form-${i}">
+        <label>Title</label>
         <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte" value="${initPlaces[i].items[j].title}"/>
+        <label>ID</label>
         <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)" value="${initPlaces[i].items[j].value}"/>
-        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i> Xóa item</button>
+        <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i></button>
         <hr/>
         </div>`);
     }
@@ -131,7 +137,7 @@ add_more_fields.onclick = function(){
   var i = document.getElementsByClassName('title').length;
   places.insertAdjacentHTML("beforeend", `
     <div class="place-form">
-      <input type="text" name="survey_options[]" class="title" siz="50" placeholder="Tên địa điểm" />
+      <input type="text" name="survey_options[]" class="title form-control" placeholder="Tên địa điểm" />
       <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i> Chỉnh sửa</button>
       <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa địa điểm</button>
       <hr/>
@@ -156,8 +162,10 @@ add_more_fields.onclick = function(){
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <input class="imgRPG form-control" placeholder="imgRPG">
-            <textarea class="desc-place form-control" rows="4" placeholder="Mô tả"></textarea>
+            <label>imgRPG (Ảnh hiện lên map)</label>
+            <input class="imgRPG form-control">
+            <label>Mô tả</label>
+            <textarea class="desc-place form-control" rows="4"></textarea>
             <hr>
             <div class="items${i} items">
             
@@ -175,9 +183,11 @@ add_more_fields.onclick = function(){
     items = document.getElementsByClassName(`items${i}`)[0];
     items.insertAdjacentHTML("beforeend", `
       <div class="item-form-${i}">
-      <input type="text" class="typeOfItem${i} form-control" placeholder="Tilte"/>
+      <label>Title</label>
+      <input type="text" class="typeOfItem${i} form-control" placeholder=""/>
+      <label>ID</label>
       <input type="text" class="ID${i} form-control" placeholder="ID (ngăn cách các ID giữa các dấu phẩy)"/>
-      <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i> Xóa item</button>
+      <button type="button" class="btn btn-danger remove_items${i}" onclick="removeParent(this)"><i class="bi bi-trash"></i></i></button>
       <hr/>
       </div>`);
   }
