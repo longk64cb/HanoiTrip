@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="logo.png" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css?ver=25">
-        <link rel="stylesheet" href="showOff.css?ver=26">
+        <link rel="stylesheet" href="showOff.css?ver=37">
         <style>
             .map {
                 background-image: url(<?php echo $d["map"]?>);
@@ -21,6 +21,10 @@
         </style>
     </head>
     <body>
+        <div class="loading">
+            <img src="loading.gif" width="300px" height="300px">
+        </div>
+            
         <div class="frame">
             <div class="corner_topleft"></div>
             <div class="corner_topright"></div>
@@ -68,11 +72,10 @@
             for($k=0;$k<sizeof($d['places']);$k++) {
                 echo '<div class = "showOff">';
                 echo '<div class = "showOffHeader">';
-                echo '<h1 style = "margin-left:20px; padding-top: 10px;">'.$d['places'][$k]['title'].'</h1>';
-                echo '<div class="closeShowOff" style="position: absolute; right: 20px; top: 18px; width: 40px; height: 40px; border-radius: 10px;" onclick="closeShowOff()"><svg style="padding-top: 10px; padding-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                </svg></div></div>';
+                echo '<h1 style = "margin-left:2vw; padding-top: 2vh;">'.$d['places'][$k]['title'].'</h1>';
+                echo '<div class="closeShowOff" style="position: absolute; right: 24px; top: 24px; width: 40px; height: 40px; border-radius: 10px;" onclick="closeShowOff()">
+                    <img src="closeButton.png" width = "40px" height="40px">
+                </div></div>';
                 echo '<div class = "showOffContainer">';
                 echo '<p style="font-size:20px; padding-top: 30px; width: 72vw; margin: auto">'.$d['places'][$k]['desc'].'</p>';
                 for($i=0;$i<sizeof($d['places'][$k]['items']);$i++){
@@ -245,7 +248,14 @@
                 }
             }
         </script>
-
+        <script>
+            document.onreadystatechange = function() {
+                if (document.readyState == "complete") {
+                    console.log('complete')
+                    document.querySelector(".loading").style.display = "none";
+                }
+            };
+        </script>
         
     </body>
 </html>
