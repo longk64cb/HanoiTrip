@@ -16,8 +16,9 @@ body {
 }
 
 .loading img {
+    display: block;
+    margin: auto;
     margin-top: 220px;
-    margin-left: 600px;
 }
 
 .showOff {
