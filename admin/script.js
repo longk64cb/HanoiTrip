@@ -60,15 +60,15 @@ function buildFromFile() {
 
   layers = initTrealet.trealet.map_canvas;
   document.getElementById("title").value = initTrealet.trealet.title;
-  document.getElementById("desc").value = initTrealet.trealet.desc;
-  document.getElementById("imgFront").value = initTrealet.trealet.imgFront;
+  // document.getElementById("desc").value = initTrealet.trealet.desc;
+  // document.getElementById("imgFront").value = initTrealet.trealet.imgFront;
   var initPlaces = initTrealet.trealet.places;
   for (let i = 0; i < initPlaces.length; i++) {
     places.insertAdjacentHTML("beforeend", `
       <div class="place-form">
-        <input type="text" name="survey_options[]" class="title form-control" placeholder="Tên địa điểm" value="${initPlaces[i].title}"/>
+        <input type="text" name="survey_options[]" class="title form-control" placeholder="Tên đối tượng" value="${initPlaces[i].title}"/>
         <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i> Chỉnh sửa</button>
-        <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa địa điểm</button>
+        <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa đối tượng</button>
         <hr/>
       </div>
     `);
@@ -137,9 +137,9 @@ add_more_fields.onclick = function(){
   var i = document.getElementsByClassName('title').length;
   places.insertAdjacentHTML("beforeend", `
     <div class="place-form">
-      <input type="text" name="survey_options[]" class="title form-control" placeholder="Tên địa điểm" />
+      <input type="text" name="survey_options[]" class="title form-control" placeholder="Tên đối tượng" />
       <button onclick="modalTitle(${i})" type="button" id="btn${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${i}"><i class="bi bi-pen"></i> Chỉnh sửa</button>
-      <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa địa điểm</button>
+      <button type="button" onclick="removeParent(this); removeModal(${i});" class="btn btn-danger remove-place"><i class="bi bi-trash"></i> Xóa đối tượng</button>
       <hr/>
     </div>
   `);
@@ -209,8 +209,8 @@ function modalTitle(i) {
 
 function getData() {
   trealet.trealet.title = document.getElementById("title").value;
-  trealet.trealet.desc = document.getElementById("desc").value;
-  trealet.trealet.imgFront = document.getElementById("imgFront").value;
+  // trealet.trealet.desc = document.getElementById("desc").value;
+  // trealet.trealet.imgFront = document.getElementById("imgFront").value;
   trealet.trealet.places = [];
 
   var place_titles = document.getElementsByClassName("title");
