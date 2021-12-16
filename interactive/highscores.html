@@ -13,9 +13,17 @@
       <div id="highScores" class="flex-center flex-column">
         <h1 id="finalScore">High Scores</h1>
         <ul id="highScoresList"></ul>
-        <a class="btn" href="/">Go Home</a>
+        <a class="btn" href="index.html">Go Home</a>
       </div>
     </div>
     <script src="highscores.js"></script>
+    <script>
+      let a = document.getElementsByTagName('A');
+      const id = new URLSearchParams(window.location.search).get('id');
+      console.log(id)
+      for (let item of a) {
+        item.href = item.href + '?id=' + id;
+      }        
+    </script>
   </body>
 </html>

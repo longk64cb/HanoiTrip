@@ -1,0 +1,26 @@
+[
+  {
+    "question": "Văn Miếu được xây dựng vào năm nào?",
+    "choice1": "1070",
+    "choice2": "1076",
+    "choice3": "1253",
+    "choice4": "1010",
+    "answer": 1
+  },
+  {
+    "question": "Văn Miếu được xây dựng bởi triều đình nhà:",
+    "choice1": "Nhà Trần",
+    "choice2": "Nhà Hậu Lê",
+    "choice3": "Nhà Lý",
+    "choice4": "Nhà Nguyễn",
+    "answer": 3
+  },
+  {
+    "question": "Văn Miếu nằm ở quận nào của Hà Nội?",
+    "choice1": "Quận Hoàn Kiếm",
+    "choice2": "Quận Cầu Giấy",
+    "choice3": "Quận Hoàng Mai",
+    "choice4": "Quận Đống Đa",
+    "answer": 4
+  }
+]

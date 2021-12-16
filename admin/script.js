@@ -27,6 +27,7 @@ var trealet = {
 
 var place = {
   "title": "",
+  "quiz": "",
   "x" : null,
   "y" : null,
   "imgRPG": null,
@@ -83,13 +84,20 @@ function buildFromFile() {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <label>imgRPG (Ảnh hiện lên map)</label>
-              <input class="imgRPG form-control" placeholder="" value="${initPlaces[i].imgRPG}">
+              <div class="row">
+                <div class="col-7">
+                  <label>imgRPG (Ảnh hiện lên map)</label>
+                  <input class="imgRPG form-control" placeholder="" value="${initPlaces[i].imgRPG}">
+                </div>
+                <div class="col-5">
+                  <label>Quiz</label>
+                  <input class="quiz form-control" value=${initPlaces[i].quiz}>
+                </div>
+              </div>
               <label>Mô tả</label>
               <textarea class="desc-place form-control" rows="4" placeholder="">${initPlaces[i].desc}</textarea>
               <hr>
               <div class="items items${i}">
-              
               </div>
             </div>
             <div class="modal-footer">
@@ -162,8 +170,16 @@ add_more_fields.onclick = function(){
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <label>imgRPG (Ảnh hiện lên map)</label>
-            <input class="imgRPG form-control">
+            <div class="row">
+              <div class="col-7">
+              <label>imgRPG (Ảnh hiện lên map)</label>
+              <input class="imgRPG form-control">
+              </div>
+              <div class="col-5">
+              <label>Quiz</label>
+              <input class="quiz form-control">
+              </div>
+            </div>
             <label>Mô tả</label>
             <textarea class="desc-place form-control" rows="4"></textarea>
             <hr>
@@ -214,6 +230,7 @@ function getData() {
   trealet.trealet.places = [];
 
   var place_titles = document.getElementsByClassName("title");
+  var place_quiz = document.getElementsByClassName("quiz");
   var place_desc = document.getElementsByClassName("desc-place");
   var imgRPG = document.getElementsByClassName("imgRPG");
   for (let i = 0; i < place_titles.length; i++) {
@@ -230,6 +247,7 @@ function getData() {
       place.x = 20;
     }
     place.title = place_titles[i].value;
+    place.quiz = place_quiz[i].value;
     // console.log(place.title)
     place.desc = place_desc[i].value;
     place.imgRPG = imgRPG[i].value;

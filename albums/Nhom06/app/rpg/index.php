@@ -108,12 +108,18 @@
                         echo '</div>';
                     }
                 }
+                echo '<div class="content container" style="margin-top: 40px;"><h3 class="title">Bản đồ</h3><center>';
+                echo '<iframe src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAYO1nK2-2oWbKwc_SIEcU_phKYDFoayEE&q='.$d['places'][$k]['title'].'" width="600" height="450" style="border:0; margin-bottom: 20px;" allowfullscreen="" loading="lazy"></iframe>';
+                echo '</center></div>';
+                echo '<div class="content container" style="margin-top: 40px;"><h3 class="title">Quiz</h3><center>';
+                echo '<div class="qrcode" id="qrcode'.$k.'" link="https://hcloud.trealet.com/apps_dev/btl/nhom06/interactive/index.html?id='.$d['places'][$k]['quiz'].'"></div>';
+                echo '<br><a class="btn btn-danger" target="_blank" href="https://hcloud.trealet.com/apps_dev/btl/nhom06/interactive/index.html?id='.$d['places'][$k]['quiz'].'">Tham gia giải đố Quiz</a>';
+                echo '</center></div>';
                 echo '</div>';
                 echo '</div>';
             }
         ?>
-
-        <script src="script.js?ver=28"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        <script src="script.js?ver=28"></script>
         <script src="text.js?ver=1"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -122,7 +128,7 @@
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
             var popoverList = popoverTriggerList.map(function ( popoverTrigger ) {
                 return new bootstrap.Popover(popoverTrigger)
-            });      
+            });          
         </script>
 
         <script>
@@ -255,6 +261,11 @@
                     document.querySelector(".loading").style.display = "none";
                 }
             };
+            var qrcode = document.getElementsByClassName("qrcode");
+            for (let i = 0; i < qrcode.length; i++) {
+                let qr = new QRCode(`qrcode${i}`);
+                qr.makeCode(qrcode[i].getAttribute('link'));
+            }   
         </script>
         
     </body>

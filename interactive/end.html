@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Congrats!</title>
     <link rel="stylesheet" href="app.css" />
+    <script async src="https://api.kvstore.io/js/public.js?storage_uuid=f54e3735-db3e-4e83-9e05-2d106e639b77"></script>
   </head>
   <body>
     <div class="container">
@@ -28,10 +29,18 @@
             Save
           </button>
         </form>
-        <a class="btn" href="/game.html">Play Again</a>
-        <a class="btn" href="/">Go Home</a>
+        <a class="btn" href="game.html">Play Again</a>
+        <a class="btn" href="index.html">Go Home</a>
       </div>
     </div>
-    <script src="end.js"></script>
+    <script src="end.js?ver=3"></script>
+    <script>
+      let a = document.getElementsByTagName('A');
+      const id = new URLSearchParams(window.location.search).get('id');
+      console.log(id)
+      for (let item of a) {
+        item.href = item.href + '?id=' + id;
+      }        
+    </script>
   </body>
 </html>
