@@ -1,0 +1,32 @@
+.quiz-form {
+    width: 500px;
+    height: auto;
+    position: static;
+    margin: auto;
+    margin-top: 1cm;
+
+}
+
+h1{
+    color: red;
+}
+
+.answer{
+    margin-bottom: 20px;
+}
+
+.field_title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.my-button{
+    margin: auto;
+    position: relative;
+}
+
+form{
+    margin-top: 0.25cm;
+}
+
