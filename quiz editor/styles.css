@@ -4,7 +4,7 @@
     position: static;
     margin: auto;
     margin-top: 1cm;
-
+    max-height: 640px;
 }
 
 h1{
@@ -28,5 +28,15 @@ h1{
 
 form{
     margin-top: 0.25cm;
+
+}
+
+#quiz-container {
+    display: flex;
+}
+
+.places {
+    max-height: 600px;
+    overflow-y: auto;
 }
 
