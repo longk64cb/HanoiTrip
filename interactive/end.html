@@ -43,7 +43,7 @@
     <script src="end.js?ver=3"></script>
     <script>
       let a = document.getElementsByTagName('A');
-      const id = new URLSearchParams(window.location.search).get('id');
+      // const id = new URLSearchParams(window.location.search).get('id');
       console.log(id)
       for (let item of a) {
         item.href = item.href + '?id=' + id;
