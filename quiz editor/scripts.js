@@ -1,3 +1,17 @@
+var add_form = document.getElementById("getForm")
+var places = document.getElementsByClassName("places")
+var quizArr = []
+
+var quizTrealet = 
+{
+    "question":"",
+    "choice1": "",
+    "choice2": "",
+    "choice3": "",
+    "choice4": "",
+    "answer" :1
+}
+
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("application/json");
@@ -11,187 +25,90 @@ function readTextFile(file, callback) {
 }
 
 // HÀM XÓA FORM---------------------------------------------------------
-function removeForm(id) {
-    var el = document.getElementById(id)
-    el.remove();
-}
+// function removeForm(id) {
+//     var el = document.getElementById(id)
+//     el.remove();
+// }
+
+
 
 readTextFile("langchutich.trealet", function(text){
     var myData = JSON.parse(text);
-    console.log(myData);
-
+    console.log(myData.length);
+    // var count_form_after_fetch = countForm();
+    // console.log(count_form_after_fetch);
     for(let i = 0; i < myData.length; i++){
-        var f = document.createElement("form");
-        f.setAttribute('id', `${i}`);
-        f.setAttribute('class', "quiz-form");
-
-        // THÊM THẺ DIV 1 CHỨA TRƯỜNG CÂU HỎI
-        var div1 = document.createElement("div");
-        div1.setAttribute('class', "form-group");
-
-        var input1 = document.createElement("input");
-        input1.setAttribute('class', "form-control");
-        input1.setAttribute('type', "text");
-        input1.setAttribute('id', "exampleFormControlInput1");
-        input1.setAttribute('placeholder', "Nhập câu hỏi");
-        input1.setAttribute('value', myData[i].question)
-        div1.append(input1);
-        
-        // THÊM THẺ DIV 2 CHỨA CÁC CÂU TRẢ LỜI
-
-        var div2 = document.createElement("div");
-        div2.setAttribute('class', "form-group");
-
-        var a1 = document.createElement("input");
-        a1.setAttribute('class', "form-control");
-        a1.setAttribute('type', "text");
-        a1.setAttribute('placeholder', "Đáp án A");
-        a1.setAttribute('value', myData[i].choice1);
-
-        var a2 = document.createElement("input");
-        a2.setAttribute('class', "form-control");
-        a2.setAttribute('type', "text");
-        a2.setAttribute('placeholder', "Đáp án B");
-        a2.setAttribute('value', myData[i].choice2);
-
-        var a3 = document.createElement("input");
-        a3.setAttribute('class', "form-control");
-        a3.setAttribute('type', "text");
-        a3.setAttribute('placeholder', "Đáp án B");
-        a3.setAttribute('value', myData[i].choice3);
-
-        var a4 = document.createElement("input");
-        a4.setAttribute('class', "form-control");
-        a4.setAttribute('type', "text");
-        a4.setAttribute('placeholder', "Đáp án D");
-        a4.setAttribute('value', myData[i].choice4);
-
-        div2.append(a1);
-        div2.append(a2);
-        div2.append(a3);
-        div2.append(a4);
-
-        // THÊM THẺ DIV 3 CHỨA SELECTION ĐÁP ÁN ĐÚNG
-        var div3 = document.createElement("div");
-        div3.setAttribute('class', "form-group");
-
-        var correct_answer = document.createElement("input");
-        correct_answer.setAttribute('class', "form-control");
-        correct_answer.setAttribute('type', "text");
-        correct_answer.setAttribute('placeholder', "Đáp án D");
-        correct_answer.setAttribute('value', myData[i].answer);
-        div3.append(correct_answer);
-
-        // THÊM NÚT XÓA
-        var button = document.createElement("button");
-        button.setAttribute('class', "btn btn-dark");
-        button.setAttribute('type', "button");
-        button.setAttribute('onclick', `removeForm(${i})`);
-        button.append("Xóa câu hỏi")
-
-        f.append(div1);
-        f.append(div2);
-        f.append(div3);
-        f.append(button);
-
-        document.getElementsByTagName('body')[0].appendChild(f);
+        places[0].insertAdjacentHTML("beforeend", `
+        <form class="quiz_form">
+            <div class="form-group">
+              <input type="text" class="form-control" id="question${i}"  placeholder="Nhập câu hỏi" value="${myData[i].question}">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" class="answer" placeholder="Đáp án A" id="a${i}" value="${myData[i].choice1}">
+              <input class="form-control" type="text" class="answer" placeholder="Đáp án B" id="b${i}" value="${myData[i].choice2}">
+              <input class="form-control" type="text" class="answer" placeholder="Đáp án C" id="c${i}" value="${myData[i].choice3}">
+              <input class="form-control" type="text" class="answer" placeholder="Đáp án D" id="d${i}" value="${myData[i].choice4}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" class="correct" placeholder="Đáp án đúng" id="answer${i}" value="${myData[i].answer}">
+            </div>
+            <button type="button" class="btn btn-dark" onclick="removeParent(this)">Xóa câu hỏi</button>
+          </form>
+      `);
     }
-
-    
 });
 
 
+
+
 //-----THÊM FORM NHẬP------------------------------------
-function generateForm() {
-
-    var f = document.createElement("form");
-    f.setAttribute('id', "quiz_form");
-    f.setAttribute('class', "quiz-form");
-
-    // THÊM THẺ DIV 1 CHỨA TRƯỜNG CÂU HỎI
-    var div1 = document.createElement("div");
-    div1.setAttribute('class', "form-group");
-    var input1 = document.createElement("input");
-    input1.setAttribute('class', "form-control");
-    input1.setAttribute('type', "text");
-    input1.setAttribute('id', "exampleFormControlInput1");
-    input1.setAttribute('placeholder', "Nhập câu hỏi");
-    div1.append(input1);
-
-    // THÊM THẺ DIV 2 CHỨA CÁC CÂU TRẢ LỜI
-    var div2 = document.createElement("div");
-    div2.setAttribute('class', "form-group");
-
-    var a1 = document.createElement("input");
-    a1.setAttribute('class', "form-control");
-    a1.setAttribute('type', "text");
-    a1.setAttribute('placeholder', "Đáp án A");
-
-    var a2 = document.createElement("input");
-    a2.setAttribute('class', "form-control");
-    a2.setAttribute('type', "text");
-    a2.setAttribute('placeholder', "Đáp án B");
-
-    var a3 = document.createElement("input");
-    a3.setAttribute('class', "form-control");
-    a3.setAttribute('type', "text");
-    a3.setAttribute('placeholder', "Đáp án B");
-
-    var a4 = document.createElement("input");
-    a4.setAttribute('class', "form-control");
-    a4.setAttribute('type', "text");
-    a4.setAttribute('placeholder', "Đáp án D");
-
-
-    div2.append(a1);
-    div2.append(a2);
-    div2.append(a3);
-    div2.append(a4);
-
-    // THÊM THẺ DIV 3 CHỨA SELECTION ĐÁP ÁN ĐÚNG
-    var div3 = document.createElement("div");
-    div3.setAttribute('class', "form-group");
-
-    var correct_answer = document.createElement("select");
-    correct_answer.setAttribute('class', "form-control");
-    correct_answer.setAttribute('id', "exampleFormControlSelect1");
-
-    var a = document.createElement("option");
-    a.append("A");
-    var b = document.createElement("option");
-    b.append("B");
-    var c = document.createElement("option");
-    c.append("C");
-    var d = document.createElement("option");
-    d.append("D");
-
-    // THÊM NÚT XÓA
-    var button = document.createElement("button");
-    button.setAttribute('class', "btn btn-dark");
-    button.setAttribute('type', "button");
-    button.setAttribute('onclick', `removeNewForm()`);
-    button.append("Xóa câu hỏi")
-
-
-    correct_answer.append(a);
-    correct_answer.append(b);
-    correct_answer.append(c);
-    correct_answer.append(d);
-
-    div3.append(correct_answer);
-
-    f.append(div1);
-    f.append(div2);
-    f.append(div3);
-    f.append(button);
-
-    document.getElementsByTagName('body')[0].appendChild(f);
-
+var add_count = 0;
+add_form.onclick =  function() {
+  add_count = countForm();
+  console.log(add_count);
+    places[0].insertAdjacentHTML("beforeend", `
+    <form class="quiz_form">
+        <div class="form-group">
+          <input type="text" class="form-control"  placeholder="Nhập câu hỏi" id="question${add_count}">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" class="answer" placeholder="Đáp án A" id="a${add_count}">
+          <input class="form-control" type="text" class="answer" placeholder="Đáp án B" id="b${add_count}">
+          <input class="form-control" type="text" class="answer" placeholder="Đáp án C" id="c${add_count}">
+          <input class="form-control" type="text" class="answer" placeholder="Đáp án D" id="d${add_count}">
+        </div>
+        <div class="form-group">
+        <input class="form-control" type="text" class="correct" placeholder="Đáp án đúng" id="answer${add_count}">
+        </div>
+        <button type="button" class="btn btn-dark" onclick="removeParent(this)">Xóa câu hỏi</button>
+      </form>
+  `);
 }
 
-function removeNewForm() {
-    var el = document.getElementById('quiz_form')
-    el.remove();
+function countForm () {
+  var number_of_form = document.querySelectorAll('form').length;
+  return number_of_form;
 }
 
 
+// -------LẤY DỮ LIỆU TỪ FORM----------------------------
+function getData (){
+  var count = countForm();
+  console.log(count);
+  for (let i = 0; i < count; i++) {
+    quizTrealet.question = document.getElementById(`question${i}`).value;
+    quizTrealet.choice1 = document.getElementById(`a${i}`).value;
+    quizTrealet.choice2 = document.getElementById(`b${i}`).value;
+    quizTrealet.choice3 = document.getElementById(`c${i}`).value;
+    quizTrealet.choice4 = document.getElementById(`d${i}`).value;
+    quizTrealet.answer = document.getElementById(`answer${i}`).value;
+    console.log(quizTrealet);
+  }
+}
+
+
+const removeParent = function(button) {
+  button.parentNode.remove();
+  console.log(countForm());
+  // console.log("h")
+}
