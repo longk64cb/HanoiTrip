@@ -8,6 +8,15 @@ body{
     height: 680px;
 }
 
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1.5px;
+}
 .quiz-form {
     width: 500px;
     height: auto;
@@ -17,9 +26,6 @@ body{
     max-height: 640px;
 }
 
-h1{
-    color: red;
-}
 
 .answer{
     margin-bottom: 20px;
@@ -31,10 +37,6 @@ h1{
     font-weight: 300;
 }
 
-/* .my-button{
-    margin: auto;
-    position: relative;
-} */
 
 form{
     margin-top: 0.25cm;
@@ -55,10 +57,10 @@ h1 {
     font-size: 48px;
     color: #232c3d;
     margin-bottom: 10px !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #tab1 {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,3 +106,46 @@ label {
     font-weight: bold;
     /* display: block; */
 }
+
+.card {
+    background: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    /* padding-bottom: 16px; */
+}
+.card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1em;
+    padding: 16px;
+}
+.card header h1 {
+    margin: 0;
+}
+.card header .button-as-link {
+    margin-right: 1em;
+}
+.card aside {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.card_body {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.card_right-column {
+    padding-right: 16px;
+}
+
+input, textarea {
+    padding: 10px;
+    /* margin: 5px auto; */
+    margin-bottom: 5px;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    background: none;
+    color: black;
+  }
