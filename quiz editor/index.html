@@ -11,35 +11,31 @@
 </head>
 
 <body>
-  <div class="quiz-form">
-    <button type="button" class="btn btn-dark" id="getForm">Thêm câu hỏi</button>
-    <button type="button" class="btn btn-primary" onclick="getData()">Xác nhận</button>
-    <br>
-    <br>
-    <div class="places">
-    </div>
-      <!-- <form id="quiz_form">
-        <div class="form-group">
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập câu hỏi">
+  <div id="tab1">
+    <div class="card main">
+      <div class="drag-and-drop">
+        <h1>Khởi tạo Trealet</h1>
+        <label class="form-label" for="file-load">Load file trealet có sẵn</label>
+        <div class="input-group">
+          <input type="file" accept=".trealet" class="form-control " id="file-load" aria-describedby="load-file-button" placeholder="Load file trealet có sẵn">
+          <button type="button" class="btn btn-success" id="load-file-button">Load file</button> 
         </div>
-        <div class="form-group">
-          <input class="form-control" type="text" class="answer" placeholder="Đáp án A">
-          <input class="form-control" type="text" class="answer" placeholder="Đáp án B">
-          <input class="form-control" type="text" class="answer" placeholder="Đáp án C">
-          <input class="form-control" type="text" class="answer" placeholder="Đáp án D">
-        </div>
-        <div class="form-group">
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-            <option>D</option>
-          </select>
-        </div>
-        <button type="button" class="btn btn-dark" onclick="removeForm()">Xóa câu hỏi</button>
-      </form> -->
+      </div>
+    </div>   
   </div>
   
+  <div id="tab2">
+    <div class="quiz-form card main">
+      <button type="button" class="btn btn-dark" id="getForm">Thêm câu hỏi</button>
+      <button type="button" class="btn btn-primary" onclick="getData()" style="margin-top: 10px;">Xác nhận</button>
+      <br>
+      <br>
+      <div class="places">
+      </div>
+    </div>
+  </div>
+  
+
   <!-- <button type="button" class="btn btn-dark">Xóa câu hỏi</button>
   <button id="confirm-button" type="button" class="btn btn-primary">Xác nhận</button> -->
   

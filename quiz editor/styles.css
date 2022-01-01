@@ -1,7 +1,17 @@
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 1em;
+    background: linear-gradient(180deg, #fff9e4 0%, #eeeed8 100%);
+    display: flex;
+    justify-content: space-around;
+    color: #2f2c48;
+    height: 680px;
+}
+
 .quiz-form {
     width: 500px;
     height: auto;
-    position: static;
+    position:absolute;
     margin: auto;
     margin-top: 1cm;
     max-height: 640px;
@@ -21,10 +31,10 @@ h1{
     font-weight: 300;
 }
 
-.my-button{
+/* .my-button{
     margin: auto;
     position: relative;
-}
+} */
 
 form{
     margin-top: 0.25cm;
@@ -40,3 +50,57 @@ form{
     overflow-y: auto;
 }
 
+h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #232c3d;
+    margin-bottom: 10px !important;
+}
+
+#tab1 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#tab2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    width: 600px;
+    max-height: 640px;
+    overflow-y: hidden;
+    margin: 7px auto;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+      /* padding-bottom: 16px; */
+}
+
+.place {
+    overflow-y: auto;
+}
+
+button {
+    font-weight: bold !important;
+}
+
+#load-file-button {
+    margin-bottom: 5px;
+}
+
+label {
+    text-transform: uppercase;
+    /* margin-bottom: 0.5em; */
+    font-weight: bold;
+    /* display: block; */
+}
