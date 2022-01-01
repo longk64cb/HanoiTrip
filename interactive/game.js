@@ -5,20 +5,18 @@ const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById('progressBarFull');
 const loader = document.getElementById('loader');
 const game = document.getElementById('game');
-const id = new URLSearchParams(window.location.search).get('id');
-
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuesions = [];
-
+const id = new URLSearchParams(window.location.search).get('id');
 let questions = [];
+var prefixs = document.querySelectorAll('.choice-prefix');
+var texts = document.querySelectorAll('.choice-text');
 
 fetch(`https://hcloud.trealet.com/tiny${id}/?json`)
-// fetch('https://hcloud.trealet.com/albums/Nhom06/app/streamline.trealet')
     .then((res) => {
-        // console.log(res.json())
         return res.json();
     })
     .then((res) => {
@@ -27,10 +25,30 @@ fetch(`https://hcloud.trealet.com/tiny${id}/?json`)
     .then((res) => {return res.json()}) 
     .then((loadedQuestions) => {
         questions = loadedQuestions;
+        // questions = loadedQuestions.results.map((loadedQuestion) => {
+        //     const formattedQuestion = {
+        //         question: loadedQuestion.question,
+        //     };
+
+        //     const answerChoices = [...loadedQuestion.incorrect_answers];
+        //     formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
+        //     answerChoices.splice(
+        //         formattedQuestion.answer - 1,
+        //         0,
+        //         loadedQuestion.correct_answer
+        //     );
+
+        //     answerChoices.forEach((choice, index) => {
+        //         formattedQuestion['choice' + (index + 1)] = choice;
+        //     });
+
+        //     return formattedQuestion;
+        // });
+
         startGame();
     })
     .catch((err) => {
-        console.error(err);
+        console.log(err);
     });
 
 //CONSTANTS
@@ -50,7 +68,7 @@ getNewQuestion = () => {
     if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score);
         //go to the end page
-        return window.location.assign(`end.html?id=${id}`);
+        return window.location.assign(`./end.html?id=${id}`);
     }
     questionCounter++;
     progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
@@ -85,10 +103,15 @@ choices.forEach((choice) => {
             incrementScore(CORRECT_BONUS);
         }
 
+        selectedChoice.parentElement.childNodes[1].style.transform = 'none';
+        selectedChoice.parentElement.childNodes[3].style.transform = 'none';
+
+        selectedChoice.parentElement.classList.remove('choice-container');
         selectedChoice.parentElement.classList.add(classToApply);
 
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply);
+            selectedChoice.parentElement.classList.add('choice-container');
             getNewQuestion();
         }, 1000);
     });
@@ -98,3 +121,13 @@ incrementScore = (num) => {
     score += num;
     scoreText.innerText = score;
 };
+
+function mouseEnter(i) {
+    prefixs[i].style.transform = 'translateY(8px)'
+    texts[i].style.transform = 'translateY(8px)'
+}
+
+function mouseLeave(i) {
+    prefixs[i].style.transform = 'none'
+    texts[i].style.transform = 'none'
+}
