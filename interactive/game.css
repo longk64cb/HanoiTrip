@@ -1,11 +1,24 @@
+.options-row {
+  display: flex;
+  width: 840px
+}
+
+@media (max-width: 800px){
+  .options-row {
+      display: block;
+  }
+}
+
 .choice-container {
   display: flex;
-  margin-bottom: 20px;
-  width: 800px;
+  margin-bottom: 40px;
+  margin-right: 80px;
+  width: 320px;
   height: 88px;
   font-size: 2rem;
   background-image: url(option_up.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .choice-container:hover {
@@ -27,20 +40,24 @@
 .correct {
   display: flex;
   margin-bottom: 20px;
-  width: 800px;
+  margin-right: 80px;
+  width: 320px;
   height: 88px;
   font-size: 2rem;
   background-size: contain;
+  background-repeat: no-repeat;
   background-image: url(correct.png);
 }
 
 .incorrect {
   display: flex;
   margin-bottom: 20px;
-  width: 800px;
+  margin-right: 80px;
+  width: 320px;
   height: 88px;
   font-size: 2rem;
   background-size: contain;
+  background-repeat: no-repeat;
   background-image: url(incorrect.png);
 }
 
@@ -73,21 +90,3 @@
   width: 0%;
 }
 
-/* LOADER */
-/* #loader {
-  border: 1.6rem solid white;
-  border-radius: 50%;
-  border-top: 1.6rem solid #56a5eb;
-  width: 12rem;
-  height: 12rem;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} */
