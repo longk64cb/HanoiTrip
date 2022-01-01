@@ -2,7 +2,8 @@ var add_form = document.getElementById("getForm");
 var places = document.getElementsByClassName("places");
 var loadButton = document.getElementById("load-file-button");
 var fileInput = document.getElementById("file-load");
-var fileName = document.getElementsByClassName("file-name").value;
+
+
 var quizArr = [];
 var quizTrealet =
 {
@@ -23,6 +24,21 @@ loadButton.onclick = function () {
       var myData = JSON.parse(reader.result);
       initTrealet = myData;
       for (let i = 0; i < myData.length; i++) {
+        var answer_in_char = 0;
+        switch(myData[i].answer){
+          case 1:
+            answer_in_char = 'A';
+            break;
+          case 2:
+            answer_in_char = 'B';
+            break;
+          case 3:
+            answer_in_char = 'C';
+            break;
+          case 4:
+            answer_in_char = 'D';
+            break;
+        }
         places[0].insertAdjacentHTML("beforeend", `
         <form class="quiz_form">
             <div class="form-group">
@@ -39,7 +55,7 @@ loadButton.onclick = function () {
             <div class="form-group">
               <label for="exampleFormControlSelect1">Đáp án đúng</label>
               <select class="form-control correct">
-                <option value="none" selected disabled hidden> Chọn đáp án đúng</option>
+                <option selected disabled hidden>${answer_in_char}</option>
                 <option>A</option>
                 <option>B</option>
                 <option>C</option>
@@ -92,6 +108,7 @@ add_form.onclick = function () {
 
 // -------LẤY DỮ LIỆU TỪ FORM----------------------------
 function getData() {
+  var fileName = document.getElementById('file-name').value;
   var count = document.getElementsByClassName('question').length;
   for (let i = 0; i < count; i++) {
     quizTrealet.question = document.getElementsByClassName('question')[i].value;
