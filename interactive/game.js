@@ -15,45 +15,41 @@ let questions = [];
 var prefixs = document.querySelectorAll('.choice-prefix');
 var texts = document.querySelectorAll('.choice-text');
 
-fetch(`https://hcloud.trealet.com/tiny${id}/?json`)
+
+fetch(
+    'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple'
+)
     .then((res) => {
         return res.json();
     })
-    .then((res) => {
-        return fetch(res.image.url_full)
-    })
-    .then((res) => {return res.json()}) 
     .then((loadedQuestions) => {
-        questions = loadedQuestions;
-        // questions = loadedQuestions.results.map((loadedQuestion) => {
-        //     const formattedQuestion = {
-        //         question: loadedQuestion.question,
-        //     };
+        questions = loadedQuestions.results.map((loadedQuestion) => {
+            const formattedQuestion = {
+                question: loadedQuestion.question,
+            };
 
-        //     const answerChoices = [...loadedQuestion.incorrect_answers];
-        //     formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
-        //     answerChoices.splice(
-        //         formattedQuestion.answer - 1,
-        //         0,
-        //         loadedQuestion.correct_answer
-        //     );
+            const answerChoices = [...loadedQuestion.incorrect_answers];
+            formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
+            answerChoices.splice(
+                formattedQuestion.answer - 1,
+                0,
+                loadedQuestion.correct_answer
+            );
 
-        //     answerChoices.forEach((choice, index) => {
-        //         formattedQuestion['choice' + (index + 1)] = choice;
-        //     });
+            answerChoices.forEach((choice, index) => {
+                formattedQuestion['choice' + (index + 1)] = choice;
+            });
 
-        //     return formattedQuestion;
-        // });
-
+            return formattedQuestion;
+        });
         startGame();
     })
     .catch((err) => {
-        console.log(err);
+        console.error(err);
     });
 
-//CONSTANTS
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 10;
+const MAX_QUESTIONS = 3;
 
 startGame = () => {
     questionCounter = 0;
@@ -61,18 +57,16 @@ startGame = () => {
     availableQuesions = [...questions];
     getNewQuestion();
     game.classList.remove('hidden');
-    loader.classList.add('hidden');
+    loader.remove();
 };
 
 getNewQuestion = () => {
     if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score);
-        //go to the end page
         return window.location.assign(`./end.html?id=${id}`);
     }
     questionCounter++;
     progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
-    //Update the progress bar
     progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
 
     const questionIndex = Math.floor(Math.random() * availableQuesions.length);
