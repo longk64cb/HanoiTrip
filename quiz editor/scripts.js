@@ -1,7 +1,9 @@
-var add_form = document.getElementById("getForm")
-var places = document.getElementsByClassName("places")
-var quizArr = []
+var add_form = document.getElementById("getForm");
+var places = document.getElementsByClassName("places");
+var loadButton = document.getElementById("load-file-button");
+var fileInput = document.getElementById("file-load");
 
+var quizArr = [];
 var quizTrealet = 
 {
     "question":"",
@@ -10,7 +12,23 @@ var quizTrealet =
     "choice3": "",
     "choice4": "",
     "answer" :1
-}
+};
+
+loadButton.onclick = function() {
+  if (fileInput.files[0].name.split(".")[1] != "trealet") {
+    alert("Yêu cầu upload file trealet!");
+  } else {
+    const reader = new FileReader();
+    reader.onload = function(fileLoadedEvent){
+      var fileContent = JSON.parse(reader.result);
+      console.log(fileContent);
+      initTrealet = fileContent;
+
+    };
+    reader.readAsText(fileInput.files[0]);
+  }
+};
+
 
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -22,7 +40,7 @@ function readTextFile(file, callback) {
         }
     }
     rawFile.send(null);
-}
+};
 
 // HÀM XÓA FORM---------------------------------------------------------
 // function removeForm(id) {
@@ -30,40 +48,42 @@ function readTextFile(file, callback) {
 //     el.remove();
 // }
 
+function buildFromFile() {
 
+}
 
-readTextFile("langchutich.trealet", function(text){
-    var myData = JSON.parse(text);
-    console.log(myData.length);
-    // var count_form_after_fetch = countForm();
-    // console.log(count_form_after_fetch);
-    for(let i = 0; i < myData.length; i++){
-        places[0].insertAdjacentHTML("beforeend", `
-        <form class="quiz_form">
-            <div class="form-group">
-              <input type="text" class="form-control" id="question${i}"  placeholder="Nhập câu hỏi" value="${myData[i].question}">
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="text" class="answer" placeholder="Đáp án A" id="a${i}" value="${myData[i].choice1}">
-              <input class="form-control" type="text" class="answer" placeholder="Đáp án B" id="b${i}" value="${myData[i].choice2}">
-              <input class="form-control" type="text" class="answer" placeholder="Đáp án C" id="c${i}" value="${myData[i].choice3}">
-              <input class="form-control" type="text" class="answer" placeholder="Đáp án D" id="d${i}" value="${myData[i].choice4}">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" class="correct" placeholder="Đáp án đúng" id="answer${i}" value="${myData[i].answer}">
-            </div>
-            <button type="button" class="btn btn-dark" onclick="removeParent(this)">Xóa câu hỏi</button>
-          </form>
-      `);
-    }
-});
+// readTextFile("langchutich.trealet", function(text){
+//     var myData = JSON.parse(text);
+//     console.log(myData.length);
+//     // var count_form_after_fetch = countForm();
+//     // console.log(count_form_after_fetch);
+//     for(let i = 0; i < myData.length; i++){
+//         places[0].insertAdjacentHTML("beforeend", `
+//         <form class="quiz_form">
+//             <div class="form-group">
+//               <input type="text" class="form-control" id="question${i}"  placeholder="Nhập câu hỏi" value="${myData[i].question}">
+//             </div>
+//             <div class="form-group">
+//               <input class="form-control" type="text" class="answer" placeholder="Đáp án A" id="a${i}" value="${myData[i].choice1}">
+//               <input class="form-control" type="text" class="answer" placeholder="Đáp án B" id="b${i}" value="${myData[i].choice2}">
+//               <input class="form-control" type="text" class="answer" placeholder="Đáp án C" id="c${i}" value="${myData[i].choice3}">
+//               <input class="form-control" type="text" class="answer" placeholder="Đáp án D" id="d${i}" value="${myData[i].choice4}">
+//             </div>
+//             <div class="form-group">
+//                 <input class="form-control" type="text" class="correct" placeholder="Đáp án đúng" id="answer${i}" value="${myData[i].answer}">
+//             </div>
+//             <button type="button" class="btn btn-dark" onclick="removeParent(this)">Xóa câu hỏi</button>
+//           </form>
+//       `);
+//     }
+// });
 
 
 
 
 //-----THÊM FORM NHẬP------------------------------------
 var add_count = 0;
-add_form.onclick =  function() {
+add_form.onclick = function() {
   add_count = countForm();
   console.log(add_count);
     places[0].insertAdjacentHTML("beforeend", `
@@ -102,8 +122,14 @@ function getData (){
     quizTrealet.choice3 = document.getElementById(`c${i}`).value;
     quizTrealet.choice4 = document.getElementById(`d${i}`).value;
     quizTrealet.answer = document.getElementById(`answer${i}`).value;
-    console.log(quizTrealet);
+    quizArr.push(quizTrealet)
   }
+  // console.log(quizArr);
+  // var filename = prompt("Đặt tên file trealet:");
+  // download(filename, text);
+  // quizArr = []
+  download("streamline.trealet", JSON.stringify(quizArr, null, 2));
+  quizArr = []
 }
 
 
@@ -111,4 +137,17 @@ const removeParent = function(button) {
   button.parentNode.remove();
   console.log(countForm());
   // console.log("h")
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
